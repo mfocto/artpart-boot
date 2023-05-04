@@ -1,4 +1,8 @@
-package artpart.src.main.java.org.ict.artpart.minone.model.entity;
+package org.ict.artpart.minone.model.entity;
 
-public interface MinoneRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MinoneRepository extends JpaRepository<MinoneEntity, Long>  {
 }
