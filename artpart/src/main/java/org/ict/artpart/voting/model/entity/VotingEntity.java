@@ -21,10 +21,10 @@ public class VotingEntity {
             sequenceName = "voting_idx",
             allocationSize = 1)
     @Column(name="voting_idx")
-    private Long voting_idx;        //투표설문 번호
+    private Long votingIdx;        //투표설문 번호
 
     @Column(name="member_idx")
-    private Long member_idx;     //입주민 번호
+    private Long memberIdx;     //입주민 번호
 
     @Column(name="category")
     private String category;        //카테고리
@@ -33,10 +33,10 @@ public class VotingEntity {
     private String title;               //제목
 
     @Column(name="start_time")
-    private LocalDateTime start_time;      //투표설문 시작시간
+    private LocalDateTime startTime;      //투표설문 시작시간
 
     @Column(name="end_time")
-    private LocalDateTime end_time;        //투표설문 종료시간
+    private LocalDateTime endTime;        //투표설문 종료시간
 
     @Column(name="answer1")
     private String answer1;         //답변1
