@@ -17,30 +17,30 @@ public class MinoneEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "minoneSequence",
-            sequenceName = "min_idx",
+            sequenceName = "minIdx",
             allocationSize = 1)
-    @Column(name="min_idx", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
+    @Column(name="minIdx", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
     private Long minIdx;
 
-    @Column(name="member_idx", nullable = false)//입주민 번호
+    @Column(name="memberIdx", nullable = false)//입주민 번호
     private Long memberIdx;
 
-    @Column(name="min_title", nullable = false)//민원제목
+    @Column(name="minTitle", nullable = false)//민원제목
     private String minTitle;
 
-    @Column(name="min_type", nullable = false)//민원내용
+    @Column(name="minType", nullable = false)//민원내용
     private String minType;
 
-    @Column(name="min_status", nullable = false)//처리상황
+    @Column(name="minStatus", nullable = false)//처리상황
     private String minStatus;
 
-    @Column(name="min_res")//관리자답변
+    @Column(name="minRes")//관리자답변
     private String minRes;
 
-    @Column(name="min_file")//원본파일
+    @Column(name="minFile")//원본파일
     private String minFile;
 
-    @Column(name="min_rename")//변경파일
+    @Column(name="minRename")//변경파일
     private String minRename;
 
     @Column(name="min_category", nullable = false)//카테고리
