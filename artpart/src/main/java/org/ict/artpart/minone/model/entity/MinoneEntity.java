@@ -19,31 +19,31 @@ public class MinoneEntity {
     @SequenceGenerator(name = "minoneSequence",
             sequenceName = "minIdx",
             allocationSize = 1)
-    @Column(name="minIdx", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
+    @Column(name="MINIDX", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
     private Long minIdx;
 
-    @Column(name="memberIdx", nullable = false)//입주민 번호
+    @Column(name="MEMBERIDX", nullable = false)//입주민 번호
     private Long memberIdx;
 
-    @Column(name="minTitle", nullable = false)//민원제목
+    @Column(name="MINTITLE", nullable = false)//민원제목
     private String minTitle;
 
-    @Column(name="minType", nullable = false)//민원내용
+    @Column(name="MINTYPE", nullable = false)//민원내용
     private String minType;
 
-    @Column(name="minStatus", nullable = false)//처리상황
+    @Column(name="MINSTATUS", nullable = false)//처리상황
     private String minStatus;
 
-    @Column(name="minRes")//관리자답변
+    @Column(name="MINRES")//관리자답변
     private String minRes;
 
-    @Column(name="minFile")//원본파일
+    @Column(name="MINFILE")//원본파일
     private String minFile;
 
-    @Column(name="minRename")//변경파일
+    @Column(name="MINRENAME")//변경파일
     private String minRename;
 
-    @Column(name="min_category", nullable = false)//카테고리
+    @Column(name="MINCATEGORY", nullable = false)//카테고리
     private String minCategory;
 
 
