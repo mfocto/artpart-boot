@@ -20,31 +20,31 @@ public class MinoneEntity {
             sequenceName = "min_idx",
             allocationSize = 1)
     @Column(name="min_idx", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
-    private Long min_idx;
+    private Long minIdx;
 
     @Column(name="member_idx", nullable = false)//입주민 번호
-    private Long member_idx;
+    private Long memberIdx;
 
     @Column(name="min_title", nullable = false)//민원제목
-    private String min_title;
+    private String minTitle;
 
     @Column(name="min_type", nullable = false)//민원내용
-    private String min_type;
+    private String minType;
 
     @Column(name="min_status", nullable = false)//처리상황
-    private String min_status;
+    private String minStatus;
 
     @Column(name="min_res")//관리자답변
-    private String min_res;
+    private String minRes;
 
     @Column(name="min_file")//원본파일
-    private String min_file;
+    private String minFile;
 
     @Column(name="min_rename")//변경파일
-    private String min_rename;
+    private String minRename;
 
     @Column(name="min_category", nullable = false)//카테고리
-    private String min_category;
+    private String minCategory;
 
 
 

@@ -29,12 +29,12 @@ public class VotingService {
 
         for(VotingEntity entity : votingEntityList){
             VotingDto votingDto = VotingDto.builder()
-                    .voting_idx(entity.getVoting_idx())
-                    .member_idx(entity.getMember_idx())
+                    .votingIdx(entity.getVotingIdx())
+                    .memberIdx(entity.getMemberIdx())
                     .category(entity.getCategory())
                     .title(entity.getTitle())
-                    .start_time(entity.getStart_time().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-                    .end_time(entity.getEnd_time().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                    .startTime(entity.getStartTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                    .endTime(entity.getEndTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                     .answer1(entity.getAnswer1())
                     .answer2(entity.getAnswer2())
                     .answer3(entity.getAnswer3())
