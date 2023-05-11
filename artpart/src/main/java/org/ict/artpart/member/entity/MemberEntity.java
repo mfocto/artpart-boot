@@ -43,4 +43,13 @@ public class MemberEntity {
 
     @Column(name = "MEMBER_LOGINOK")
     private String memberLoginOK;
+
+    @Column(name = "MEMBERMYCAR1")
+    private String memberMycar1;
+    @Column(name = "MEMBERMYCAR2")
+    private String memberMycar2;
+
+
+
+
 }

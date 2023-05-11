@@ -19,4 +19,6 @@ public class Member {
     private String memberPw;
     private String memberPhone;
     private String memberLoginOK;
+    private String memberMycar1;
+    private String memberMycar2;
 }
