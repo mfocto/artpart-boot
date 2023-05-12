@@ -23,21 +23,21 @@ public class MinoneService {
 
 
     //민원 전체리스트 조회
-    public List<MinoneDto> selectMinoneList(){
+    public List<MinoneDto> getMinoneList(){
         List<MinoneEntity> minoneEntityList = minoneRepository.findAll();
         List<MinoneDto> list = new ArrayList<>();
 
         for(MinoneEntity entity : minoneEntityList){
             MinoneDto minoneDto = MinoneDto.builder()
-                    .min_idx(entity.getMin_idx())
-                    .min_title(entity.getMin_title())
-                    .min_type(entity.getMin_type())
-                    .min_status(entity.getMin_status())
-                    .min_res(entity.getMin_res())
-                    .min_file(entity.getMin_file())
-                    .min_rename(entity.getMin_rename())
-                    .min_category(entity.getMin_category())
-                    .member_idx(entity.getMember_idx())
+                    .minIdx(entity.getMinIdx())
+                    .memberIdx(entity.getMemberIdx())
+                    .minTitle(entity.getMinTitle())
+                    .minType(entity.getMinType())
+                    .minStatus(entity.getMinStatus())
+                    .minRes(entity.getMinRes())
+                    .minFile(entity.getMinFile())
+                    .minRename(entity.getMinRename())
+                    .minCategory(entity.getMinCategory())
 
                     .build();
             log.info(minoneDto.toString());

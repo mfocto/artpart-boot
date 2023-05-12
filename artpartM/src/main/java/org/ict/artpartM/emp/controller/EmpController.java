@@ -17,7 +17,7 @@ public class EmpController {
     @GetMapping("/login/{empid}")
     public Header<EmpDto> login(@PathVariable String empid, @RequestParam("emppwd") String emppwd){
         EmpDto empdto =empService.login(empid, emppwd);
-
+        System.out.println(empid + emppwd);
         if(empdto != null){
             return Header.OK(empdto);
         } else {
