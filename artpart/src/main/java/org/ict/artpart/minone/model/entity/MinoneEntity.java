@@ -1,16 +1,19 @@
 package org.ict.artpart.minone.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.ict.artpart.minone.model.dto.MinoneDto;
 
 import javax.persistence.*;
 
+//Entity (테이블 정보 설정)//
+
+
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@ToString                     //객체의 값 확인
+@AllArgsConstructor     //생성자 자동 완성
+@NoArgsConstructor     //생성자 자동 완성
+@Builder                       //SQL 사용 시 파라미터에 값을 쉽게 넣어주기
 @Table(name = "MINONE")
 @Entity
 public class MinoneEntity {
@@ -47,7 +50,20 @@ public class MinoneEntity {
     private String minCategory;
 
 
+    public MinoneDto toDto() {
+        MinoneDto dto = new MinoneDto();
+        dto.setMinIdx(this.minIdx);
+        dto.setMemberIdx(this.memberIdx);
+        dto.setMinTitle(this.minTitle);
+        dto.setMinType(this.minType);
+        dto.setMinStatus(this.minStatus);
+        dto.setMinRes(this.minRes);
+        dto.setMinFile(this.minFile);
+        dto.setMinRename(this.minRename);
+        dto.setMinCategory(this.minCategory);
 
+        return dto;
+    }
 }
 
 
