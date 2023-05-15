@@ -17,7 +17,8 @@ import org.ict.artpartM.emp.entity.EmpEntity;
 @Entity
 public class NoticeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NOTICEIDX")
+    @SequenceGenerator(name="NOTICEIDX", sequenceName = "NOTICE_IDX", allocationSize=1)
     @Column(name = "NOTICEIDX")
     private long noticeidx;
     @ManyToOne
