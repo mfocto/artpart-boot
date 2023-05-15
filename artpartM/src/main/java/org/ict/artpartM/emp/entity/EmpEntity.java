@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 public class EmpEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMPIDX")
     @Column(name = "EMP_IDX")
     private int empIdx;
     @Column(name = "EMP_ID")
