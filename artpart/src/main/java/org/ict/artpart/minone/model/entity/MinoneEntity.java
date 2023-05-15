@@ -15,11 +15,9 @@ import javax.persistence.*;
 @Entity
 public class MinoneEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name = "minoneSequence",
-            sequenceName = "min_idx",
-            allocationSize = 1)
-    @Column(name="min_idx", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MIN_IDX")
+    @SequenceGenerator(name = "MIN_IDX", sequenceName = "MIN_IDX", allocationSize = 1)
+    @Column(name="MIN_IDX", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
     private Long minIdx;
 
     @Column(name="member_idx", nullable = false)//입주민 번호

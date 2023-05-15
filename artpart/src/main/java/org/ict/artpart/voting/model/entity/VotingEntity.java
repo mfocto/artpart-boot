@@ -16,10 +16,8 @@ import java.time.LocalDateTime;
 @Entity
 public class VotingEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name = "votingSequence",
-            sequenceName = "voting_idx",
-            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "VOTING_IDX")
+    @SequenceGenerator(name = "VOTING_IDX", sequenceName = "VOTING_IDX", allocationSize = 1)
     @Column(name="voting_idx")
     private Long votingIdx;        //투표설문 번호
 
