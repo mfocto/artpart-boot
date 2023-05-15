@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.ict.artpartM.notice.entity.QNoticeEntity.noticeEntity;
 
+
 @RequiredArgsConstructor
 @Repository
 public class NoticeRepositoryCustom {
