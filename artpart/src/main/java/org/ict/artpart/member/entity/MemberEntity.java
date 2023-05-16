@@ -45,6 +45,10 @@ public class MemberEntity {
     private String memberPhone;         //전화번호
 
     @Column(name = "MEMBER_LOGINOK")
+	
+	
+	
+
     private String memberLoginOK;        //입주완료여부
 
     @Column(name = "MEMBER_MYCAR1")
@@ -52,4 +56,5 @@ public class MemberEntity {
 
     @Column(name = "MEMBER_MYCAR2")
     private String memberMyCar2;         //등록차 번호2
+
 }
