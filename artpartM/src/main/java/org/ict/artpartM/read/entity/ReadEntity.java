@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class ReadEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "READIDX")
+    @SequenceGenerator(name="READIDX", sequenceName = "READ_IDX", allocationSize=1)
     @Column(name = "READIDX")
     private long readidx;
 

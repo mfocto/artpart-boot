@@ -1,51 +1,71 @@
 package org.ict.artpart.minone.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.ict.artpart.minone.model.dto.MinoneDto;
 
 import javax.persistence.*;
 
+//Entity (테이블 정보 설정)//
+
+
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@ToString                     //객체의 값 확인
+@AllArgsConstructor     //생성자 자동 완성
+@NoArgsConstructor     //생성자 자동 완성
+@Builder                       //SQL 사용 시 파라미터에 값을 쉽게 넣어주기
 @Table(name = "MINONE")
 @Entity
 public class MinoneEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MIN_IDX")
-    @SequenceGenerator(name = "MIN_IDX", sequenceName = "MIN_IDX", allocationSize = 1)
-    @Column(name="MIN_IDX", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "minoneSequence",
+            sequenceName = "minIdx",
+            allocationSize = 1)
+    @Column(name="MINIDX", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
+
     private Long minIdx;
 
-    @Column(name="member_idx", nullable = false)//입주민 번호
+    @Column(name="MEMBERIDX", nullable = false)//입주민 번호
     private Long memberIdx;
 
-    @Column(name="min_title", nullable = false)//민원제목
+    @Column(name="MINTITLE", nullable = false)//민원제목
     private String minTitle;
 
-    @Column(name="min_type", nullable = false)//민원내용
+    @Column(name="MINTYPE", nullable = false)//민원내용
     private String minType;
 
-    @Column(name="min_status", nullable = false)//처리상황
+    @Column(name="MINSTATUS", nullable = false)//처리상황
     private String minStatus;
 
-    @Column(name="min_res")//관리자답변
+    @Column(name="MINRES")//관리자답변
     private String minRes;
 
-    @Column(name="min_file")//원본파일
+    @Column(name="MINFILE")//원본파일
     private String minFile;
 
-    @Column(name="min_rename")//변경파일
+    @Column(name="MINRENAME")//변경파일
     private String minRename;
 
-    @Column(name="min_category", nullable = false)//카테고리
+    @Column(name="MINCATEGORY", nullable = false)//카테고리
     private String minCategory;
 
 
+    public MinoneDto toDto() {
+        MinoneDto dto = new MinoneDto();
+        dto.setMinIdx(this.minIdx);
+        dto.setMemberIdx(this.memberIdx);
+        dto.setMinTitle(this.minTitle);
+        dto.setMinType(this.minType);
+        dto.setMinStatus(this.minStatus);
+        dto.setMinRes(this.minRes);
+        dto.setMinFile(this.minFile);
+        dto.setMinRename(this.minRename);
+        dto.setMinCategory(this.minCategory);
 
+        return dto;
+    }
 }
 
 
