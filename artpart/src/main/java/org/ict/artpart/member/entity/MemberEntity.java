@@ -55,7 +55,8 @@ public class MemberEntity {
 
     @Comment("입주완료여부")
     @Column(name = "MEMBER_LOGINOK")
-    private String memberLoginOK;
+    private String memberLoginOK;        //입주완료여부
+
 
     @Comment("등록차 번호1")
     @Column(name = "MEMBER_MYCAR1")

@@ -29,6 +29,6 @@ public class NoticeEntity {
     private String title;
     @Column(name = "CONTENT")
     private String content;
-    @Column(name = "NOTICEDATE")
+    @Column(name = "NOTICEDATE", columnDefinition = "date default sysdate")
     private LocalDateTime noticedate;
 }
