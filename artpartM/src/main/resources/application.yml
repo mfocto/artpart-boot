@@ -33,3 +33,9 @@ spring:
     username: c##student
     password: student
 
+#메세지 전송용
+naver-cloud-sms:
+  accessKey: cT6IT28inKCIJucfqBvb
+  secretKey: twfzwpSol8Fe9W62tY516ckJLUNtpqrJqEog2Q4R
+  serviceId: ncp:sms:kr:307870946880:artpart
+  senderPhone: "01083869389"

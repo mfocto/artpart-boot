@@ -18,11 +18,13 @@ import javax.persistence.*;
 @Entity
 public class MinoneEntity {
     @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "minoneSequence",
             sequenceName = "minIdx",
             allocationSize = 1)
     @Column(name="MINIDX", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
+
     private Long minIdx;
 
     @Column(name="MEMBERIDX", nullable = false)//입주민 번호
