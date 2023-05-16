@@ -78,7 +78,7 @@ public class NoticeService {
 
     //공지글 수정
     public NoticeEntity update(NoticeDto noticeDto){
-        NoticeEntity entity = noticeRepository.findById(noticeDto.getNoticeidx()).orElseThrow(() -> new RuntimeException("공지글을 찾을 수 없읍니다."));
+        NoticeEntity entity = noticeRepository.findById(noticeDto.getNoticeidx());
         entity.setTitle(noticeDto.getTitle());
         entity.setContent(noticeDto.getContent());
         entity.setNoticedate(LocalDateTime.now());

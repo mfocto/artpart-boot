@@ -31,6 +31,13 @@ INSERT INTO VOTING (VOTING_IDX, CATEGORY, TITLE, START_TIME, END_TIME, ANSWER1, 
 INSERT INTO VOTING (VOTING_IDX, CATEGORY, TITLE, ANSWER1, ANSWER2, ANSWER3, ANSWER4) VALUES (VOTING_IDX.NEXTVAL, '음식', '가장 좋아하는 음식은 무엇인가요?',  '한식', '양식', '중식', '일식');
 INSERT INTO VOTING (VOTING_IDX, CATEGORY, TITLE, ANSWER1, ANSWER2, ANSWER3) VALUES (VOTING_IDX.NEXTVAL, '영화', '가장 좋아하는 영화는 무엇인가요?', '어벤져스', '스타워즈', '매트릭스');
 
+-- MINONE table insert --
+INSERT INTO MINONE (MINIDX, MEMBERIDX, MINTITLE, MINTYPE, MINSTATUS, MINRES,  MINFILE, MINRENAME, MINCATEGORY) VALUES (105, 1, '공동현관 청소 불만', '공동시설 청소상태가 나쁘다.', '처리중', default, default, default, '청소');
+INSERT INTO MINONE (MINIDX, MEMBERIDX, MINTITLE, MINTYPE, MINSTATUS, MINRES,  MINFILE, MINRENAME, MINCATEGORY) VALUES (108, 1, '주차 불만', '자리가너무없어 불만임', '처리완료', default, default, default, '청소');
+INSERT INTO MINONE (MINIDX, MEMBERIDX, MINTITLE, MINTYPE, MINSTATUS, MINRES, MINFILE, MINRENAME, MINCATEGORY) VALUES (106, 2, '주차 공간 부족 문의', '주차 공간이 부족하다.', '처리중', '주차번호 확인을 꼼꼼히하여 주차자리 낭비가 없도록 하겠습니다.', default, default, '주차');
+INSERT INTO MINONE (MINIDX, MEMBERIDX, MINTITLE, MINTYPE, MINSTATUS, MINRES,  MINFILE, MINRENAME, MINCATEGORY) VALUES (107, 2, '소음으로 인한 피해 신고', '층간 소음이 심하다.', '처리중', default, default, default, '소음');
+
+
 
 
 
