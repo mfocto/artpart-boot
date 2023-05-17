@@ -2,6 +2,7 @@ package org.ict.artpartM.member.entity;
 
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.ict.artpartM.apt.entity.AptEntity;
 
 import javax.persistence.*;
 
@@ -18,32 +19,30 @@ public class MemberEntity {
     @SequenceGenerator(name="MEMBERIDX", sequenceName = "MEMBER_IDX" , allocationSize = 1)
     @Column(name="MEMBERIDX")
     private long memberidx;
-//    @ManyToOne
-//    @NotNull
-//    @JoinColumn(name = "APT_IDX")
-//    private AptEntity aptidx;
+    @ManyToOne
     @NotNull
-    @Column(name= "MEMBER_DONG")
+    @JoinColumn(name = "APTIDX")
+    private AptEntity aptidx;
+    @NotNull
+    @Column(name= "MEMBERDONG")
     private String memberdong;
     @NotNull
-    @Column(name = "MEMBER_HO")
+    @Column(name = "MEMBERHO")
     private String memberho;
-    @NotNull
-    @Column(name = "MEMBER_NAME")
+    @Column(name = "MEMBERNAME")
     private String membername;
-    @Column(name = "MEMBER_ID")
+    @Column(name = "MEMBERID")
     private String memberid;
-    @Column(name = "MEMBER_PASSWORD")
+    @Column(name = "MEMBERPASSWORD")
     private String memberpassword;
-    @NotNull
-    @Column(name = "MEMBER_PHONE")
+    @Column(name = "MEMBERPHONE")
     private String memberphone;
     @NotNull
-    @Column(name = "MEMBER_LOGINOK", columnDefinition = "String default 'N'")
+    @Column(name = "MEMBERLOGINOK", columnDefinition = "char default 'N'")
     private String memberloginok;
-    @Column(name = "MEMBER_MYCAR1")
+    @Column(name = "MEMBERMYCAR1")
     private String membermycar1;
-    @Column(name = "MEMBER_MYCAR2")
+    @Column(name = "MEMBERMYCAR2")
     private String membermycar2;
 
 
