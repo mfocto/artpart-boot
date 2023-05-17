@@ -18,37 +18,35 @@ import javax.persistence.*;
 @Entity
 public class MinoneEntity {
     @Id
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name = "minoneSequence",
-            sequenceName = "minIdx",
-            allocationSize = 1)
-    @Column(name="MINIDX", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MIN_IDX")
+    // 'SEQUENCE'형태로(필드에 대한 고유한 값을 생성하는 데 데이터베이스 시퀀스가 사용)
+    // 'minIdx' 필드의 값이 자동으로 생성되도록 지정함. 생성된 시퀀스 이름은 "MIN_IDX"로 지정
+    @SequenceGenerator(name = "MIN_IDX", sequenceName = "MIN_IDX", allocationSize = 1)
+    @Column(name="MIN_IDX", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
     private Long minIdx;
 
-    @Column(name="MEMBERIDX", nullable = false)//입주민 번호
+    @Column(name="MEMBER_IDX", nullable = false)//입주민 번호
     private Long memberIdx;
 
-    @Column(name="MINTITLE", nullable = false)//민원제목
+    @Column(name="MIN_TITLE", nullable = false)//민원제목
     private String minTitle;
 
-    @Column(name="MINTYPE", nullable = false)//민원내용
+    @Column(name="MIN_TYPE", nullable = false)//민원내용
     private String minType;
 
-    @Column(name="MINSTATUS", nullable = false)//처리상황
+    @Column(name="MIN_STATUS", nullable = false)//처리상황
     private String minStatus;
 
-    @Column(name="MINRES")//관리자답변
+    @Column(name="MIN_RES")//관리자답변
     private String minRes;
 
-    @Column(name="MINFILE")//원본파일
+    @Column(name="MIN_FILE")//원본파일
     private String minFile;
 
-    @Column(name="MINRENAME")//변경파일
+    @Column(name="MIN_RENAME")//변경파일
     private String minRename;
 
-    @Column(name="MINCATEGORY", nullable = false)//카테고리
+    @Column(name="MIN_CATEGORY", nullable = false)//카테고리
     private String minCategory;
 
 
