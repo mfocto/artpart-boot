@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ict.artpartM.common.Header;
 import org.ict.artpartM.common.Pagination;
 import org.ict.artpartM.common.SearchCondition;
+import org.ict.artpartM.emp.entity.EmpEntity;
 import org.ict.artpartM.notice.entity.NoticeEntity;
 import org.ict.artpartM.notice.entity.NoticeRepository;
 import org.ict.artpartM.notice.entity.NoticeRepositoryCustom;
@@ -78,7 +79,7 @@ public class NoticeService {
 
     //공지글 수정
     public NoticeEntity update(NoticeDto noticeDto){
-        NoticeEntity entity = noticeRepository.findById(noticeDto.getNoticeidx());
+        NoticeEntity entity = noticeRepository.findByNoticeidx(noticeDto.getNoticeidx());
         entity.setTitle(noticeDto.getTitle());
         entity.setContent(noticeDto.getContent());
         entity.setNoticedate(LocalDateTime.now());
