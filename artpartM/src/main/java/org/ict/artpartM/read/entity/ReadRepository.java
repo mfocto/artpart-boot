@@ -1,4 +1,6 @@
 package org.ict.artpartM.read.entity;
 
-public interface ReadRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReadRepository extends JpaRepository<ReadEntity, Long> {
 }
