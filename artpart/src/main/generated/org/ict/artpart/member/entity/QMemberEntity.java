@@ -24,6 +24,8 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final org.ict.artpart.apt.entity.QAptEntity aptIdx;
 
+    public final StringPath memberAuth = createString("memberAuth");
+
     public final StringPath memberDong = createString("memberDong");
 
     public final StringPath memberHo = createString("memberHo");

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class SlipEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SLIPIDX")
+    @SequenceGenerator(name = "SLIPIDX", sequenceName = "SLIPIDX", allocationSize = 1)
     @Column(name = "SLIPIDX")
     private long slipIdx;
     @Column(name = "SLIPDATE")

@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,15 +20,16 @@ import java.time.LocalDateTime;
 public class EmpEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMP_IDX")
+    @SequenceGenerator(name = "EMP_IDX", sequenceName = "EMP_IDX", allocationSize = 1)
     @Column(name = "EMP_IDX")
-    private int empIdx;
+    private long empIdx;
     @Column(name = "EMP_ID")
     private String empId;
-    @Column(name = "EMP_PERMANENTID")
+    @Column(name = "EMP_PERMANENT_ID")
     private String empPermanentId;
-    @Column(name = "EMP_JOBID")
+    @Column(name = "EMP_JOB_ID")
     private String empJobId;
-    @Column(name = "EMP_DEPARTMENTID")
+    @Column(name = "EMP_DEPARTMENT_ID")
     private String empDepartmentId;
     @Column(name = "EMP_NAME")
     private String empName;
@@ -39,6 +43,10 @@ public class EmpEntity {
     private String empPhone;
     @Column(name = "EMP_HIREDATE")
     private LocalDateTime empHireDate;
+    @PrePersist
+    public void setHireDate() {
+        empHireDate = LocalDateTime.now();
+    }
     @Column(name = "EMP_DEPARTUREDATE")
     private LocalDateTime empDepartureDate;
     @Column(name = "EMP_CAR")
@@ -47,4 +55,6 @@ public class EmpEntity {
     private String empImg;
     @Column(name = "EMP_IMG_UP")
     private String empImgUp;
+    @Column(name="EMP_AUTH")
+    private String empAuth;
 }

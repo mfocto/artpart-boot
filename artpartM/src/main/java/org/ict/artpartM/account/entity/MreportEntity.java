@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class MreportEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TMIDX")
+    @SequenceGenerator(name = "TMIDX", sequenceName = "TMIDX", allocationSize = 1)
     @Column(name = "TMIDX")
     private long TMIdx;
     @Column(name = "TMDATE")
