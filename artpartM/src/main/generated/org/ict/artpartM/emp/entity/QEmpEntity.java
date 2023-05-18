@@ -21,6 +21,8 @@ public class QEmpEntity extends EntityPathBase<EmpEntity> {
 
     public final StringPath empAddress = createString("empAddress");
 
+    public final StringPath empAuth = createString("empAuth");
+
     public final StringPath empCar = createString("empCar");
 
     public final StringPath empDepartmentId = createString("empDepartmentId");
@@ -33,7 +35,7 @@ public class QEmpEntity extends EntityPathBase<EmpEntity> {
 
     public final StringPath empId = createString("empId");
 
-    public final NumberPath<Integer> empIdx = createNumber("empIdx", Integer.class);
+    public final NumberPath<Long> empIdx = createNumber("empIdx", Long.class);
 
     public final StringPath empImg = createString("empImg");
 

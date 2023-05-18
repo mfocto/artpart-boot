@@ -21,7 +21,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     show-sql: true
     generate-ddl: true
     defer-datasource-initialization: true
@@ -32,4 +32,16 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: c##artpart
     password: artpart
+
+# debug level 로 시큐리티 필터 로깅 설정
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+# secreykey
+org:
+  ict:
+    secretKey: n2r5u8x/A%D*G-KaPdSgVkYp3s6v9y$B&E(H+MbQeThWmZq4t7w!z%C*F-J@NcRf
 
