@@ -3,7 +3,6 @@ package org.ict.artpart.using.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ict.artpart.common.Header;
-import org.ict.artpart.common.SearchCondition;
 import org.ict.artpart.using.model.dto.UsingDto;
 import org.ict.artpart.using.model.service.UsingService;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +21,9 @@ import java.util.List;
 public class UsingController {
     private final UsingService usingService;
 
-//    @GetMapping("/Using/list")
-//    public Header<List<UsingDto>> usingList(
-//            @PageableDefault(sort = {"Usingidx"}) Pageable pageable,
-//            SearchCondition searchCondition){
-//        return usingService.getUsingList(pageable, searchCondition);
-//    }
+    @GetMapping("/using/list")
+    public Header<List<UsingDto>> usingList(
+            @PageableDefault(sort = {"usingIdx"}) Pageable pageable){
+        return usingService.getUsingList(pageable);
+    }
 }

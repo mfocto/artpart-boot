@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
     private final MemberService memberService;
 
+
     @PostMapping("/testinsert")
     public Header<MemberEntity> test(){
         return Header.OK(memberService.test());
@@ -26,4 +27,6 @@ public class MemberController {
     public Header<MemberDto> getMember(@PathVariable String memberId){
         return Header.OK(memberService.getMember(memberId));
     }
+
 }
+

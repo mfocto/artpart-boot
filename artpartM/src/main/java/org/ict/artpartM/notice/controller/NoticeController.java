@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 public class NoticeController {
     private final NoticeService noticeService;
-
+    // 목록 조회용
     @GetMapping("/notice/list")
     public Header<List<NoticeDto>> noticeList(
             @PageableDefault(sort = {"noticeidx"})Pageable pageable,
@@ -27,15 +27,16 @@ public class NoticeController {
         return noticeService.getNoticeList(pageable, searchCondition);
     }
 
+    // 상세보기용
     @GetMapping("/notice/{id}")
     public NoticeDto getNotice(@PathVariable Long id) { return noticeService.getNotice(id); }
-
+    // 작성용
     @PostMapping("/notice")
     public NoticeEntity create(@RequestBody NoticeDto noticeDto) { return noticeService.create(noticeDto); }
-
+    // 수정용
     @PatchMapping("/notice")
     public NoticeEntity update(@RequestBody NoticeDto noticeDto) { return noticeService.update(noticeDto); }
-
+    // 삭제용
     @DeleteMapping("/notice/{id}")
     public void delete(@PathVariable Long id) { noticeService.delete(id); }
 }
