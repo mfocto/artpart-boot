@@ -40,6 +40,7 @@ public class MemberService {
                     .memberloginok(entity.getMemberloginok())
                     .membermycar1(entity.getMembermycar1())
                     .membermycar2(entity.getMembermycar2())
+                    .aptidx(entity.getAptidx())
                     .build();
 
             dtos.add(dto);
@@ -69,6 +70,7 @@ public class MemberService {
                 .memberloginok(entity.getMemberloginok())
                 .membermycar1(entity.getMembermycar1())
                 .membermycar2(entity.getMembermycar2())
+                .aptidx(entity.getAptidx())
                 .build();
     }
 
@@ -85,6 +87,7 @@ public class MemberService {
                 .memberloginok(memberDto.getMemberloginok())
                 .membermycar1(memberDto.getMembermycar1())
                 .membermycar2(memberDto.getMembermycar2())
+                .aptidx(memberDto.getAptidx())
                 .build();
                 return memberRepository.save(entity);
     }
@@ -99,6 +102,7 @@ public class MemberService {
         entity.setMemberloginok(memberDto.getMemberloginok());
         entity.setMembermycar1(memberDto.getMembermycar1());
         entity.setMembermycar2(memberDto.getMembermycar2());
+        entity.setAptidx(memberDto.getAptidx());
         return memberRepository.save(entity);
     }
 
