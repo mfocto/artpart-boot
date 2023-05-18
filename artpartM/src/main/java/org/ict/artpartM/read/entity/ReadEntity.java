@@ -2,6 +2,7 @@ package org.ict.artpartM.read.entity;
 
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.ict.artpartM.member.entity.MemberEntity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,7 +20,9 @@ public class ReadEntity {
     @SequenceGenerator(name="READIDX", sequenceName = "READ_IDX", allocationSize=1)
     @Column(name = "READIDX")
     private long readidx;
-
+    @ManyToOne
+    @JoinColumn(name = "memberidx")
+    private MemberEntity memberidx;
     @NotNull
     @Column(name = "ELECTRIC")
     private long electric;

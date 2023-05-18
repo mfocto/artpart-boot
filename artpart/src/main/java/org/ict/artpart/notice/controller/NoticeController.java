@@ -22,10 +22,17 @@ import java.util.List;
 public class NoticeController {
     private final NoticeService noticeService;
 
-    @GetMapping("notice/list")
+    //공지글 목록 가져오기
+    @GetMapping("/notice/list")
     public Header<List<NoticeDto>> noticeList(
-            @PageableDefault(sort = {"NOTICEDATE"}) Pageable pageable,
+            @PageableDefault(sort = {"NOTICIDX"}) Pageable pageable,
             SearchCondition searchCondition){
         return noticeService.getNoticeList(pageable, searchCondition);
+    }
+
+    //공지글 상세 보기
+    @GetMapping("/notice/{id}")
+    public NoticeDto getNotice(@PathVariable Long id){
+        return noticeService.getNotice(id);
     }
 }
