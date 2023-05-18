@@ -25,7 +25,7 @@ public class NoticeController {
     //공지글 목록 가져오기
     @GetMapping("/notice/list")
     public Header<List<NoticeDto>> noticeList(
-            @PageableDefault(sort = {"NOTICIDX"}) Pageable pageable,
+            @PageableDefault(sort = {"NOTICEIDX"}) Pageable pageable,
             SearchCondition searchCondition){
         return noticeService.getNoticeList(pageable, searchCondition);
     }

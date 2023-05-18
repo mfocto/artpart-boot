@@ -30,9 +30,9 @@ public class QUsingEntity extends EntityPathBase<UsingEntity> {
 
     public final StringPath paymentBank = createString("paymentBank");
 
-    public final DatePath<java.sql.Date> paymentDadLine = createDate("paymentDadLine", java.sql.Date.class);
-
     public final DatePath<java.sql.Date> paymentDate = createDate("paymentDate", java.sql.Date.class);
+
+    public final DatePath<java.sql.Date> paymentDedLine = createDate("paymentDedLine", java.sql.Date.class);
 
     public final NumberPath<Integer> paymentMoney = createNumber("paymentMoney", Integer.class);
 

@@ -24,7 +24,7 @@ public class QNoticeEntity extends EntityPathBase<NoticeEntity> {
 
     public final StringPath content = createString("content");
 
-    public final DatePath<java.sql.Date> noticeDate = createDate("noticeDate", java.sql.Date.class);
+    public final DateTimePath<java.time.LocalDateTime> noticeDate = createDateTime("noticeDate", java.time.LocalDateTime.class);
 
     public final NumberPath<Long> noticeIdx = createNumber("noticeIdx", Long.class);
 

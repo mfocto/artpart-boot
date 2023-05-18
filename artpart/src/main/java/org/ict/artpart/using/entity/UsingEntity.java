@@ -34,8 +34,8 @@ public class UsingEntity {
     private Date paymentDate;
 
     @Comment("납부 마감일")
-    @Column(name = "PAYMENT_DADLINE", nullable = false)
-    private Date paymentDadLine;
+    @Column(name = "PAYMENT_DEDLINE", nullable = false)
+    private Date paymentDedLine;
 
     @Comment("결제 금액")
     @Column(name = "PAYMENT_MONEY" , nullable = false)
