@@ -12,7 +12,6 @@ import org.ict.artpart.notice.model.dto.NoticeDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class NoticeService {
         for(NoticeEntity entity : noticeEntities){
             NoticeDto dto = NoticeDto.builder()
                     .noticeIdx(entity.getNoticeIdx())
-                    .writer(entity.getWriter().getEmpIdx())
+                    .writer(entity.getWriter())
                     .title(entity.getTitle())
                     .content(entity.getContent())
                     .noticeDate(entity.getNoticeDate())
@@ -48,5 +47,16 @@ public class NoticeService {
 
         );
         return Header.OK(list, pagination);
+    }
+
+    public NoticeDto getNotice(Long id) {
+        NoticeEntity entity = noticeRepository.findById(id).orElseThrow(() -> new RuntimeException("공지글을 찾을 수 없습니다."));
+                return NoticeDto.builder()
+                        .noticeIdx(entity.getNoticeIdx())
+                        .writer(entity.getWriter())
+                        .title(entity.getTitle())
+                        .content(entity.getContent())
+                        .noticeDate(entity.getNoticeDate())
+                        .build();
     }
 }
