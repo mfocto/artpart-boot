@@ -5,7 +5,6 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.ict.artpartM.common.SearchCondition;
-import org.ict.artpartM.notice.entity.NoticeEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -25,12 +24,12 @@ public class MemberRepositoryCustom {
     public Page<MemberEntity> findAllBySearchCondition(
             Pageable pageable, SearchCondition searchCondition){
         JPAQuery<MemberEntity> query = queryFactory.selectFrom(memberEntity)
-                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
+                .where(searchKeywords(searchCondition.getSv() ,searchCondition.getSv1(),searchCondition.getSv2()));
 
         long total = query.stream().count();
 
         List<MemberEntity> results = query
-                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
+                .where(searchKeywords(searchCondition.getSv() ,searchCondition.getSv1(),searchCondition.getSv2() ))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(memberEntity.memberidx.desc())
@@ -39,21 +38,35 @@ public class MemberRepositoryCustom {
         return new PageImpl<>(results, pageable, total);
     }
 
-    private BooleanExpression searchKeywords(String sk, String sv){
-        if("member_name".equals(sk)){
-            if(StringUtils.hasLength(sv)){
-                return memberEntity.membername.contains(sv);
+    private BooleanExpression searchKeywords(String sv , String sv1 , String sv2){
+
+            if(StringUtils.hasLength(sv)&&StringUtils.hasLength(sv1)&&StringUtils.hasLength(sv2)){
+                return memberEntity.memberdong.contains(sv).and(memberEntity.memberho.contains(sv1).and(memberEntity.membername.contains(sv2)));
             }
-        } else if ("member_dong".equals(sk)) {
-            if(StringUtils.hasLength(sv)){
+            else if(StringUtils.hasLength(sv)&&StringUtils.hasLength(sv1)&&!(StringUtils.hasLength(sv2))){
+                return memberEntity.memberdong.contains(sv).and(memberEntity.memberho.contains(sv1));
+            }
+
+            else if(StringUtils.hasLength(sv)&&!(StringUtils.hasLength(sv1))&&StringUtils.hasLength(sv2)){
+                return memberEntity.memberdong.contains(sv).and(memberEntity.membername.contains(sv2));
+            }
+
+            else if(!(StringUtils.hasLength(sv))&&StringUtils.hasLength(sv1)&&StringUtils.hasLength(sv2)){
+                return memberEntity.memberho.contains(sv1).and(memberEntity.membername.contains(sv2));
+            }
+
+            else if(StringUtils.hasLength(sv)&&!(StringUtils.hasLength(sv1))&&!(StringUtils.hasLength(sv2))){
                 return memberEntity.memberdong.contains(sv);
             }
-        } else if ("member_ho".equals(sk)) {
-            if(StringUtils.hasLength(sv)){
-                return memberEntity.memberho.contains(sv);
+            else if(!(StringUtils.hasLength(sv))&&StringUtils.hasLength(sv1)&&!(StringUtils.hasLength(sv2))){
+                return memberEntity.memberho.contains(sv1);
             }
-        }
+            else if(!(StringUtils.hasLength(sv))&&!(StringUtils.hasLength(sv1))&&StringUtils.hasLength(sv2)){
+                return memberEntity.membername.contains(sv2);
+            }
 
-        return null;
+            return null;
+
+
     }
 }
