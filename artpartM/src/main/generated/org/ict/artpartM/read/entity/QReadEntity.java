@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -17,6 +18,8 @@ public class QReadEntity extends EntityPathBase<ReadEntity> {
 
     private static final long serialVersionUID = -1719653883L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QReadEntity readEntity = new QReadEntity("readEntity");
 
     public final NumberPath<Long> electric = createNumber("electric", Long.class);
@@ -25,6 +28,8 @@ public class QReadEntity extends EntityPathBase<ReadEntity> {
 
     public final NumberPath<Long> hotwater = createNumber("hotwater", Long.class);
 
+    public final org.ict.artpartM.member.entity.QMemberEntity memberidx;
+
     public final DateTimePath<java.time.LocalDateTime> readdate = createDateTime("readdate", java.time.LocalDateTime.class);
 
     public final NumberPath<Long> readidx = createNumber("readidx", Long.class);
@@ -32,15 +37,24 @@ public class QReadEntity extends EntityPathBase<ReadEntity> {
     public final NumberPath<Long> water = createNumber("water", Long.class);
 
     public QReadEntity(String variable) {
-        super(ReadEntity.class, forVariable(variable));
+        this(ReadEntity.class, forVariable(variable), INITS);
     }
 
     public QReadEntity(Path<? extends ReadEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QReadEntity(PathMetadata metadata) {
-        super(ReadEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QReadEntity(PathMetadata metadata, PathInits inits) {
+        this(ReadEntity.class, metadata, inits);
+    }
+
+    public QReadEntity(Class<? extends ReadEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.memberidx = inits.isInitialized("memberidx") ? new org.ict.artpartM.member.entity.QMemberEntity(forProperty("memberidx"), inits.get("memberidx")) : null;
     }
 
 }
