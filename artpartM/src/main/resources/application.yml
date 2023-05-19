@@ -21,7 +21,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     show-sql: true
     generate-ddl: true
     defer-datasource-initialization: true
@@ -30,8 +30,8 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
-    username: c##student
-    password: student
+    username: c##artpart
+    password: artpart
 
 #메세지 전송용
 naver-cloud-sms:
@@ -39,3 +39,15 @@ naver-cloud-sms:
   secretKey: twfzwpSol8Fe9W62tY516ckJLUNtpqrJqEog2Q4R
   serviceId: ncp:sms:kr:307870946880:artpart
   senderPhone: "01083869389"
+
+# debug level 로 시큐리티 필터 로깅 설정
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+# secreykey
+org:
+  ict:
+    secretKey: n2r5u8x/A%D*G-KaPdSgVkYp3s6v9y$B&E(H+MbQeThWmZq4t7w!z%C*F-J@NcRf
