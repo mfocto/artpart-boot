@@ -37,6 +37,8 @@ public class QSlipEntity extends EntityPathBase<SlipEntity> {
 
     public final StringPath slipType = createString("slipType");
 
+    public final StringPath slipWriter = createString("slipWriter");
+
     public QSlipEntity(String variable) {
         super(SlipEntity.class, forVariable(variable));
     }

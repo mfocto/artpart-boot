@@ -40,4 +40,6 @@ public class SlipEntity {
     private long slipCash;
     @Column(name = "SLIPNOTE")
     private String slipNote;
+    @Column(name="SLIPWRITER")
+    private String slipWriter;
 }
