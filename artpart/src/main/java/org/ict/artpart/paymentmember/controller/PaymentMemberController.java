@@ -19,9 +19,9 @@ public class PaymentMemberController {
 
     private final PaymentMemberService paymentMemberService;
 
-//    @GetMapping("payment/list")
-//    public Header<List<PaymentMemberDto>> paymentMemberList(){
-//        return paymentMemberService.getPaymentMemberList();
-//    }
+    @GetMapping("payment/list")
+    public Header<List<PaymentMemberDto>> paymentMemberList(){
+        return paymentMemberService.getPaymentMemberList();
+    }
 
 }

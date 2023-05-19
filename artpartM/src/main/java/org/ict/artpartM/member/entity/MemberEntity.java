@@ -20,7 +20,6 @@ public class MemberEntity {
     @Column(name="MEMBERIDX")
     private long memberidx;
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "APTIDX")
     private AptEntity aptidx;
     @NotNull

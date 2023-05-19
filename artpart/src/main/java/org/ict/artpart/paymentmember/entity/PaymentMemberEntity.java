@@ -25,7 +25,7 @@ public class PaymentMemberEntity {
     private long pmIdx;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_IDX")
+    @JoinColumn(name = "MEMBER_NO" , referencedColumnName = "MEMBER_IDX")
     @Comment("입주민번호")
     private MemberEntity memberNo;
 

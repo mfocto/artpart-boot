@@ -64,5 +64,9 @@ public class MemberEntity {
 
     @Comment("등록차 번호2")
     @Column(name = "MEMBER_MYCAR2")
-    private String memberMyCar2;
+    private String memberMyCar2;         //등록차 번호2
+
+    @Column(name = "MEMBER_AUTH")
+    private String memberAuth;
+
 }

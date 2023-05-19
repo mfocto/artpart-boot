@@ -21,11 +21,13 @@ import java.util.List;
 public class NoticeService {
     private final NoticeRepository noticeRepository;
     private final NoticeRepositoryCustom noticeRepositoryCustom;
+    //월별 관리비
     public Header<List<NoticeDto>> getNoticeList(
             Pageable pageable, SearchCondition searchCondition) {
         List<NoticeDto> list = new ArrayList<>();
 
         Page<NoticeEntity> noticeEntities = noticeRepositoryCustom.findAllBySearchCondition(pageable, searchCondition);
+
         for(NoticeEntity entity : noticeEntities){
             NoticeDto dto = NoticeDto.builder()
                     .noticeIdx(entity.getNoticeIdx())

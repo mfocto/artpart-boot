@@ -19,4 +19,5 @@ public class SlipDto {
     private String slipBrif;
     private long slipCash;
     private String slipNote;
+    private String slipWriter;
 }

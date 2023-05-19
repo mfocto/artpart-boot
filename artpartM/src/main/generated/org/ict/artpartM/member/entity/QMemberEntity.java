@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -17,9 +18,11 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     private static final long serialVersionUID = 336914893L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QMemberEntity memberEntity = new QMemberEntity("memberEntity");
 
-    public final NumberPath<AptEntity> aptidx = createNumber("aptidx", AptEntity.class);
+    public final org.ict.artpartM.apt.entity.QAptEntity aptidx;
 
     public final StringPath memberdong = createString("memberdong");
 
@@ -42,15 +45,24 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
     public final StringPath memberphone = createString("memberphone");
 
     public QMemberEntity(String variable) {
-        super(MemberEntity.class, forVariable(variable));
+        this(MemberEntity.class, forVariable(variable), INITS);
     }
 
     public QMemberEntity(Path<? extends MemberEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QMemberEntity(PathMetadata metadata) {
-        super(MemberEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QMemberEntity(PathMetadata metadata, PathInits inits) {
+        this(MemberEntity.class, metadata, inits);
+    }
+
+    public QMemberEntity(Class<? extends MemberEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.aptidx = inits.isInitialized("aptidx") ? new org.ict.artpartM.apt.entity.QAptEntity(forProperty("aptidx")) : null;
     }
 
 }

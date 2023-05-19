@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.ict.artpartM.apt.entity.AptEntity;
 
 @Data
 @NoArgsConstructor
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MemberDto {
     private long memberidx;
-    private long aptidx;
+    private AptEntity aptidx;
     private String memberdong;
     private String memberho;
     private String membername;

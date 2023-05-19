@@ -10,11 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import javassist.NotFoundException;
 
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -23,6 +25,13 @@ import java.util.List;
 public class MinoneService {
     private final MinoneRepository minoneRepository;
 
+    //########################################################################
+    //새 글 작성
+    public MinoneDto post(MinoneDto minoneDto) {
+        MinoneEntity minoneEntity = minoneDto.toEntity();
+        MinoneEntity result = minoneRepository.save(minoneEntity);
+        return result.toDto();
+    }
 
 
     //########################################################################
@@ -31,76 +40,41 @@ public class MinoneService {
         return minoneRepository.findAll(Sort.by(Sort.Direction.DESC, "minIdx"));
     }
 
-
-
     //########################################################################
-    //내 민원 삭제 요청처리용
-    public void deleteMyMinone(Long minIdx)  {
+    //해당 입주민이 작성한 글 조회
+    //minIdx에 해당하는 MinoneEntity를 조회하고, 이를 MinoneDto로 변환하여 리턴
+    public MinoneDto view(Long minIdx) throws NotFoundException {
+        Optional<MinoneEntity> minoneEntity = minoneRepository.findById(minIdx);
 
-    }//deleteMyMinone
-
-
-    //########################################################################
-    //민원등록
-    public void register(MinoneEntity minone) {
-        minoneRepository.save(minone);
-    }//register
-
-
-
-    //########################################################################
-    //특정 게시글 번호에 해당하는 게시글정보 조회
-    public MinoneEntity read(Long minIdx) throws Exception {
-        return minoneRepository.getOne(minIdx);
+        if (minoneEntity.isPresent()) {
+            return minoneEntity.get().toDto();
+        } else {
+            throw new NotFoundException("리소스를 찾을 수 없습니다.");
+        }
     }
 
-
-
     //########################################################################
+    //민원 글 수정
+    public MinoneDto update(MinoneDto model, Long minIdx) throws Exception{
+        MinoneDto minoneDto = view(minIdx);
 
+        minoneDto.setMinTitle(model.getMinTitle());
+        minoneDto.setMinType(model.getMinType());
+        // Set other properties as needed
 
+        MinoneEntity minoneEntity = minoneDto.toEntity();
+        minoneEntity.setMinIdx(minIdx);
+        MinoneEntity result = minoneRepository.save(minoneEntity);
 
-    //########################################################################
-    //1명이 작성한 게시글 모두 조회
-    public List<MinoneDto> getMinoneByMemberIdx(Long memberIdx) {
-        List<MinoneEntity> minoneEntityList = minoneRepository.findByMemberIdx(memberIdx);
-        List<MinoneDto> list = new ArrayList<>();
-
-        for (MinoneEntity entity : minoneEntityList) {
-            MinoneDto minoneDto = MinoneDto.builder()
-                    .minIdx(entity.getMinIdx())
-                    .memberIdx(entity.getMemberIdx())
-                    .minTitle(entity.getMinTitle())
-                    .minType(entity.getMinType())
-                    .minStatus(entity.getMinStatus())
-                    .minRes(entity.getMinRes())
-                    .minFile(entity.getMinFile())
-                    .minRename(entity.getMinRename())
-                    .minCategory(entity.getMinCategory())
-
-                    .build();
-            log.info(minoneDto.toString()); //확인
-
-            list.add(minoneDto);
-        }//getMinoneByMemberIdx
-
-        return list;
+        return new MinoneDto(result);
     }
 
-
-
-
-
-
-
-
     //########################################################################
-    //########################################################################
-    //########################################################################
-
-
-
-
+    //글삭제
+    public void delete(Long minIdx) throws Exception {
+        this.view(minIdx);
+        minoneRepository.deleteById(minIdx);
+    }
 
 
 
