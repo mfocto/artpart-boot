@@ -40,6 +40,7 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.javassist:javassist:3.27.0-GA'		//Javassist 라이브러리 추가: 프로젝트의 의존성 관리 도구
 }
 
 
