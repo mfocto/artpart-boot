@@ -25,7 +25,7 @@ public class UsingRepositoryCustom {
         List<UsingEntity> results = query
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(usingEntity.paymentDadLine.desc())
+                .orderBy(usingEntity.paymentDedLine.desc())
                 .fetch();
         return new PageImpl<>(results, pageable, total);
     }

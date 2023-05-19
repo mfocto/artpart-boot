@@ -33,7 +33,7 @@ public class UsingService {
                     .detailIdx(entity.getDetailIdx())
                     .memberIdx(entity.getMemberIdx().getMemberIdx())
                     .paymentDate(entity.getPaymentDate())
-                    .paymentDadLine(entity.getPaymentDadLine())
+                    .paymentDedLine(entity.getPaymentDedLine())
                     .paymentMoney(entity.getPaymentMoney())
                     .paymentBank(entity.getPaymentBank())
                     .bankNumber(entity.getBankNumber())
