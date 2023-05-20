@@ -8,9 +8,9 @@ import org.ict.artpartM.common.SearchCondition;
 import org.ict.artpartM.member.entity.MeetingEntity;
 import org.ict.artpartM.member.entity.MeetingRepository;
 import org.ict.artpartM.member.entity.MeetingRepositoryCustom;
-import org.ict.artpartM.member.entity.MemberEntity;
+
 import org.ict.artpartM.member.model.dto.MeetingDto;
-import org.ict.artpartM.member.model.dto.MemberDto;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class MeetingService {
     private final MeetingRepository meetingRepository;
     private final MeetingRepositoryCustom meetingRepositoryCustom;
 
-    public Header<List<MeetingDto>> getMemberList(
+    public Header<List<MeetingDto>> getMeetingList(
             Pageable pageable, SearchCondition searchCondition){
         List<MeetingDto> dtos = new ArrayList<>();
 
@@ -89,6 +89,7 @@ public class MeetingService {
         entity.setMeetingtitle(meetingDto.getMeetingtitle());
         entity.setMeetingcontent(meetingDto.getMeetingcontent());
         entity.setMeetingopen(meetingDto.getMeetingopen());
+        entity.setMeetingid(meetingDto.getMeetingid());
         return meetingRepository.save(entity);
     }
 
