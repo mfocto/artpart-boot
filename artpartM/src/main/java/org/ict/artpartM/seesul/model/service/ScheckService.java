@@ -2,8 +2,11 @@ package org.ict.artpartM.seesul.model.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ict.artpartM.common.Header;
 import org.ict.artpartM.seesul.entity.ScheckEntity;
 import org.ict.artpartM.seesul.entity.ScheckRepository;
+import org.ict.artpartM.seesul.entity.SeesulEntity;
+import org.ict.artpartM.seesul.entity.SeesulRepository;
 import org.ict.artpartM.seesul.model.dto.ScheckDto;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +17,17 @@ import java.util.List;
 @Service
 public class ScheckService {
     private final ScheckRepository scheckRepository;
+    private final SeesulRepository seesulRepository;
 
     //체크리스트 목록 조회
-    public List<ScheckDto> getScheckList(Long sidx) {
+    public Header<List<ScheckDto>> getScheckList(long id) {
+        SeesulEntity sidx = seesulRepository.findBySidx(id);
+
         List<ScheckEntity> scheckEntities = scheckRepository.findAllBySidx(sidx);
         if (scheckEntities.isEmpty()) {
             throw new RuntimeException("글을 찾을 수 없습니다.");
         }
         List<ScheckDto> list = new ArrayList<>();
-
         for(ScheckEntity entity : scheckEntities){
             ScheckDto dto = ScheckDto.builder()
                     .scheckidx(entity.getScheckidx())
@@ -35,7 +40,7 @@ public class ScheckService {
             list.add(dto);
         }
 
-        return list;
+        return Header.OK(list);
     }
 
     //체크리스트 등록
