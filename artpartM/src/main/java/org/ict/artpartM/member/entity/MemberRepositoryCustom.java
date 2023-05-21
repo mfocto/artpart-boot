@@ -37,6 +37,16 @@ public class MemberRepositoryCustom {
 
         return new PageImpl<>(results, pageable, total);
     }
+    public long membercount(){
+        JPAQuery<MemberEntity> query = queryFactory.selectFrom(memberEntity)
+                .where(loginok());
+        long total = query.stream().count();
+        return total;
+    }
+
+    public BooleanExpression loginok(){
+        return memberEntity.memberloginok.contains("Y");
+    }
 
     private BooleanExpression searchKeywords(String sv , String sv1 , String sv2){
 
