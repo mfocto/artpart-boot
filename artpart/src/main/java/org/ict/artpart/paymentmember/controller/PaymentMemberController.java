@@ -21,7 +21,8 @@ public class PaymentMemberController {
 
     @GetMapping("payment/list")
     public Header<List<PaymentMemberDto>> paymentMemberList(){
-        return paymentMemberService.getPaymentMemberList();
+
+        return paymentMemberService.getPmMonthList();
     }
 
 }

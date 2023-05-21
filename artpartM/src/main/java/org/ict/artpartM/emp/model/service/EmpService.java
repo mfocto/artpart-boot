@@ -36,6 +36,7 @@ public class EmpService {
         EmpEntity entity = empRepository.findByEmpId(empId);
         EmpDto dto = EmpDto.builder()
                 .empId(entity.getEmpId())
+                .empIdx(entity.getEmpIdx())
                 .empEmail(entity.getEmpEmail())
                 .empAddress(entity.getEmpAddress())
                 .empName(entity.getEmpName())

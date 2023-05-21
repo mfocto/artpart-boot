@@ -31,7 +31,10 @@ public class MemberController {
     public MemberDto getMember(@PathVariable Long id) { return memberService.getMember(id); }
 
     @PostMapping("/member")
-    public MemberEntity create(@RequestBody MemberDto memberDto) { return memberService.create(memberDto); }
+    public MemberEntity create(@RequestBody MemberDto memberDto) {
+        MemberEntity member = memberService.create(memberDto);
+        return member;
+    }
 
     @PatchMapping("/member")
     public MemberEntity update(@RequestBody MemberDto memberDto) { return memberService.update(memberDto); }

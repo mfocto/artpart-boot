@@ -88,6 +88,7 @@ public class MemberService {
                 .membermycar1(memberDto.getMembermycar1())
                 .membermycar2(memberDto.getMembermycar2())
                 .aptidx(memberDto.getAptidx())
+                .memberauth("ROLE_MEMBER")
                 .build();
                 return memberRepository.save(entity);
     }
