@@ -1,4 +1,7 @@
 package org.ict.artpartM.member.entity;
 
-public interface MinoneRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MinoneRepository extends JpaRepository<MinoneEntity , Long> {
+    MinoneEntity findByMinidx(long minidx);
 }

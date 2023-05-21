@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -15,7 +16,7 @@ public class PaymentMemberDto {
 
     private long pmIdx;     //개별관리비 번호
     private long memberNo;  //입주민 번호
-    private Date pmDate;    //일자
+    private String pmDate;    //일자
     private int pmHeat;     //난방비
     private int pmOnsu;     //급탕비(온수)
     private int pmGas;      //가스사용

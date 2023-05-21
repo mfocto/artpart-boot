@@ -25,11 +25,11 @@ public class EmpEntity {
     private long empIdx;
     @Column(name = "EMP_ID")
     private String empId;
-    @Column(name = "EMP_PERMANENT_ID")
+    @Column(name = "EMP_PERMANENTID")
     private String empPermanentId;
-    @Column(name = "EMP_JOB_ID")
+    @Column(name = "EMP_JOBID")
     private String empJobId;
-    @Column(name = "EMP_DEPARTMENT_ID")
+    @Column(name = "EMP_DEPARTMENTID")
     private String empDepartmentId;
     @Column(name = "EMP_NAME")
     private String empName;

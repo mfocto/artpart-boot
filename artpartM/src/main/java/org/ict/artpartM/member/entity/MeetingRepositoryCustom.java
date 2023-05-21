@@ -5,7 +5,6 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.ict.artpartM.common.SearchCondition;
-import org.ict.artpartM.notice.entity.NoticeEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +29,7 @@ public class MeetingRepositoryCustom {
         long total = query.stream().count();
 
         List<MeetingEntity> results = query
-                .where(searchKeywords(searchCondition.getSv() ,searchCondition.getSv1() ))
+                .where(searchKeywords(searchCondition.getSv() ,searchCondition.getSv1()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(meetingEntity.meetingidx.desc())

@@ -2,6 +2,7 @@ package org.ict.artpartM.member.entity;
 
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.ict.artpartM.emp.entity.EmpEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,21 +17,21 @@ import java.time.LocalDateTime;
 @Entity
 public class MeetingEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEETINGIDX")
-    @SequenceGenerator(name="MEETINGIDX", sequenceName = "MEETING_IDX" , allocationSize = 1)
-    @Column(name="MEETINGIDX")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEETING_IDX")
+    @SequenceGenerator(name="MEETING_IDX", sequenceName = "MEETING_IDX" , allocationSize = 1)
+    @Column(name="MEETING_IDX")
     private long meetingidx;
-    @Column(name = "MEETINGTIME", columnDefinition = "date default sysdate")
+    @Column(name = "MEETING_TIME", columnDefinition = "date default sysdate")
     private LocalDate meetingtime;
-    @Column(name = "MEETINGTITLE")
+    @Column(name = "MEETING_TITLE")
     @NotNull
     private String meetingtitle;
-    @Column(name = "MEETINGCONTENT")
-    @NotNull
+    @Column(name = "MEETING_CONTENT")
     private String meetingcontent;
-    @Column(name = "MEETINGID")
-    private String meetingid;
-    @Column(name = "MEETINGOPEN", columnDefinition = "char default 'N'")
+    @ManyToOne
+    @JoinColumn(name = "MEETING_ID")
+    private EmpEntity meetingid;
+    @Column(name = "MEETING_OPEN", columnDefinition = "char default 'N'")
     @NotNull
     private String meetingopen;
 }
