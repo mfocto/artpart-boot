@@ -9,6 +9,7 @@ import org.ict.artpart.member.entity.MemberEntity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -25,13 +26,13 @@ public class PaymentMemberEntity {
     private long pmIdx;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_NO" , referencedColumnName = "MEMBER_IDX")
+    @JoinColumn(name = "MEMBER_NO" , referencedColumnName = "MEMBERIDX")
     @Comment("입주민번호")
     private MemberEntity memberNo;
 
     @Column(name = "PMDATE")
     @Comment("일자")
-    private Date pmDate;
+    private LocalDateTime pmDate;
 
     @Column(name = "PMHEAT")
     @Comment("난방비")

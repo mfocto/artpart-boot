@@ -18,55 +18,43 @@ import javax.persistence.*;
 @Entity
 public class MemberEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_IDX")
-    @SequenceGenerator(name = "MEMBER_IDX", sequenceName = "MEMBER_IDX", allocationSize = 1)
-    @Column(name = "MEMBER_IDX")
-    @Comment("입주민 번호")
-    private long memberIdx;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBERIDX")
+    @SequenceGenerator(name = "MEMBERIDX", sequenceName = "MEMBERIDX", allocationSize = 1)
+    @Column(name = "MEMBERIDX")
+    private Long memberIdx;
 
     @ManyToOne
-    @Comment("아파트 번호")
-    @JoinColumn(name = "APT_IDX")
+    @JoinColumn(name = "APTIDX")
     private AptEntity aptIdx;
 
-    @Comment("동")
-    @Column(name="MEMBER_DONG")
+    @Column(name="MEMBERDONG")
     private String memberDong;
 
-    @Comment("호수")
-    @Column(name="MEMBER_HO")
+    @Column(name="MEMBERHO")
     private String memberHo;
 
-    @Comment("이름")
-    @Column(name = "MEMBER_NAME")
+    @Column(name = "MEMBERNAME")
     private String memberName;
 
-    @Comment("아이디")
-    @Column(name = "MEMBER_ID")
+    @Column(name = "MEMBERID")
     private String memberId;
 
-    @Comment("비밀번호")
-    @Column(name = "MEMBER_PASSWORD")
+    @Column(name = "MEMBERPASSWORD")
     private String memberPassword;
 
-    @Comment("전화번호")
-    @Column(name = "MEMBER_PHONE")
+    @Column(name = "MEMBERPHONE")
     private String memberPhone;
 
-    @Comment("입주완료여부")
-    @Column(name = "MEMBER_LOGINOK")
-    private String memberLoginOK;        //입주완료여부
+    @Column(name = "MEMBERLOGINOK")
+    private String memberLoginOK;
 
-
-    @Comment("등록차 번호1")
-    @Column(name = "MEMBER_MYCAR1")
+    @Column(name = "MEMBERMYCAR1")
     private String memberMyCar1;
 
-    @Comment("등록차 번호2")
-    @Column(name = "MEMBER_MYCAR2")
-    private String memberMyCar2;         //등록차 번호2
+    @Column(name = "MEMBERMYCAR2")
+    private String memberMyCar2;
 
-    @Column(name = "MEMBER_AUTH")
+    @Column(name = "MEMBERAUTH")
     private String memberAuth;
 
 }
