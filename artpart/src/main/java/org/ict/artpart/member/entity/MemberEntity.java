@@ -18,13 +18,13 @@ import javax.persistence.*;
 @Entity
 public class MemberEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_IDX")
-    @SequenceGenerator(name = "MEMBER_IDX", sequenceName = "MEMBER_IDX", allocationSize = 1)
-    @Column(name = "MEMBER_IDX")
-    @Comment("입주민 번호")
-    private long memberIdx;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBERIDX")
+    @SequenceGenerator(name = "MEMBERIDX", sequenceName = "MEMBERIDX", allocationSize = 1)
+    @Column(name = "MEMBERIDX")
+    private Long memberIdx;
 
     @ManyToOne
+
     @Comment("아파트 번호")
     @JoinColumn(name = "APTIDX")
     private AptEntity aptIdx;
@@ -65,6 +65,7 @@ public class MemberEntity {
     @Comment("등록차 번호2")
     @Column(name = "MEMBERMYCAR2")
     private String memberMyCar2;         //등록차 번호2
+
 
     @Column(name = "MEMBERAUTH")
     private String memberAuth;
