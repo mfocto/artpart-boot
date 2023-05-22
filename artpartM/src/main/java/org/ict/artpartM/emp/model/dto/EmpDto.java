@@ -25,4 +25,7 @@ public class EmpDto {
     private String empCar;
     private String empImg;
     private String empImgUp;
+    private String empMemo;
+    private String empAuth;
 }
+

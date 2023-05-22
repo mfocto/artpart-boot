@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.ict.artpartM.emp.entity.EmpEntity;
 
 @Data
 @NoArgsConstructor
@@ -14,6 +15,6 @@ public class MeetingDto {
     private String meetingtime;
     private String meetingtitle;
     private String meetingcontent;
-    private String meetingid;
+    private EmpEntity meetingid;
     private String meetingopen;
 }
