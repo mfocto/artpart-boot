@@ -17,10 +17,11 @@ import java.time.LocalTime;
 public class EmpScheduleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="SCHEDULE_IDX", sequenceName = "SCHEDULE_IDX", allocationSize=1)
     @Column(name="SCHEDULE_IDX")
     private long sIdx;
-    @Column(name="EMP_ID_SCHEDULE")
-    private String sEmpId;
+    @Column(name="EMP_SID")
+    private String empSid;
     @Column(name="EMP_STARTDATE")
     private LocalDate startDate;
     @Column(name="EMP_ENDDATE")
