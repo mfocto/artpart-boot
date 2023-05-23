@@ -43,6 +43,8 @@ public class MemberEntity {
     private String membermycar1;
     @Column(name = "MEMBERMYCAR2")
     private String membermycar2;
+    @Column(name="MEMBERAUTH")
+    private String memberauth;
 
 
 
