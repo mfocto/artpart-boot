@@ -21,8 +21,8 @@ public class ScheckController {
     @GetMapping("/scheck/{id}")
     public Header<List<ScheckDto>>  scheckList(@PathVariable long id){ return scheckService.getScheckList(id); }
     //등록용
-    @PostMapping("/scheck")
-    public List<ScheckEntity> create(@RequestBody List<ScheckDto> scheckDtoList){ return  scheckService.create(scheckDtoList); }
+    @PostMapping("/scheck/{sidx}")
+    public List<ScheckEntity> create(@RequestBody List<ScheckDto> scheckDtoList, @PathVariable long sidx){ return  scheckService.create(scheckDtoList, sidx); }
     //수정용
     @PatchMapping("/scheck")
     public List<ScheckEntity> update(@RequestBody List<ScheckDto> scheckDtoList){ return scheckService.update(scheckDtoList); }

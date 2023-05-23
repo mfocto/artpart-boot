@@ -44,11 +44,13 @@ public class ScheckService {
     }
 
     //체크리스트 등록
-    public List<ScheckEntity> create(List<ScheckDto> scheckDtoList) {
+    public List<ScheckEntity> create(List<ScheckDto> scheckDtoList, long sidx) {
         List<ScheckEntity> createdEntities = new ArrayList<>();
-        for(ScheckDto scheckDto : scheckDtoList){
+        for (ScheckDto scheckDto : scheckDtoList) {
+            SeesulEntity seesulEntity = seesulRepository.findBySidx(sidx);
+
             ScheckEntity entity = ScheckEntity.builder()
-                    .sidx(scheckDto.getSidx())
+                    .sidx(seesulEntity)
                     .scheck(scheckDto.getScheck())
                     .sresult(scheckDto.getSresult())
                     .sprocess(scheckDto.getSprocess())
