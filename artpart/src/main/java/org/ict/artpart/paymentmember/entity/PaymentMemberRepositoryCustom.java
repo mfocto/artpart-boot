@@ -4,11 +4,13 @@ import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.ict.artpart.common.SumByYear;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +22,9 @@ import static org.ict.artpart.paymentmember.entity.QPaymentMemberEntity.paymentM
 public class PaymentMemberRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
     private final EntityManager entityManager;
-    public List<PaymentMemberEntity> findAllByMonth(){
+    private Tuple tuple;
+
+    public List<PaymentMemberEntity> findAllByMonth() {
         LocalDate now = LocalDate.now();
         // CriteriaBuilder 생성
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -46,34 +50,98 @@ public class PaymentMemberRepositoryCustom {
         return monthList;
     }
 
-
-    public Map<Integer, Integer> findSumByYear() {
-        // CriteriaBuilder 생성
+    public List<SumByYear> findSumByYear() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-
-        // CriteriaQuery 생성
-        CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
+        CriteriaQuery<SumByYear> criteriaQuery = criteriaBuilder.createQuery(SumByYear.class);
         Root<PaymentMemberEntity> root = criteriaQuery.from(PaymentMemberEntity.class);
 
-        // 연도별 합계 계산을 위한 표현식 생성
-        Expression<Integer> dbYear = criteriaBuilder.function("YEAR", Integer.class, root.get("pmDate"));
-        Expression<Integer> sumExpression = criteriaBuilder.sum(root.get("pmAmount"));
+        Expression<Long> dbYear = criteriaBuilder.function("YEAR", Long.class, root.get("pmDate"));
+        Expression<Long> sumExpression = criteriaBuilder.sum(
+                criteriaBuilder.sum(
+                        criteriaBuilder.sum(
+                                criteriaBuilder.sum(
+                                        criteriaBuilder.sum(
+                                                criteriaBuilder.sum(
+                                                        criteriaBuilder.sum(
+                                                                criteriaBuilder.sum(
+                                                                        criteriaBuilder.sum(
+                                                                                root.get("pmHeat"),
+                                                                                root.get("pmOnsu")
+                                                                        ),
+                                                                        root.get("pmGas")
+                                                                ),
+                                                                root.get("pmElec")
+                                                        ),
+                                                        root.get("pmWater")
+                                                ),
+                                                root.get("pmSeptic")
+                                        ),
+                                        root.get("pmWaste")
+                                ),
+                                root.get("pmOpercost")
+                        ),
+                        root.get("pmInsure")
+                )
+        );
 
-        // 연도별 합계를 위한 그룹화 설정
-        criteriaQuery.multiselect(dbYear, sumExpression);
+        criteriaQuery.select(criteriaBuilder.construct(SumByYear.class, dbYear, sumExpression));
         criteriaQuery.groupBy(dbYear);
 
-        // EntityManager를 사용하여 쿼리 실행
-        List<Tuple> result = entityManager.createQuery(criteriaQuery).getResultList();
+        List<SumByYear> result = entityManager.createQuery(criteriaQuery).getResultList();
 
-        // 결과를 Map으로 변환
-        Map<Integer, Integer> sumByYear = new HashMap<>();
-        for (Tuple tuple : result) {
-            Integer year = tuple.get(0, Integer.class);
-            Integer sum = tuple.get(1, Integer.class);
-            sumByYear.put(year, sum);
-        }
-
-        return sumByYear;
+        return result;
     }
+
+    //년도별
+//    public List<SumByYear> findSumByYear() {
+//        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
+//        Root<PaymentMemberEntity> root = criteriaQuery.from(PaymentMemberEntity.class);
+//
+//        Expression<Integer> dbYear = criteriaBuilder.function("YEAR", Integer.class, root.get("pmDate"));
+//        Expression<Long> sumExpression = criteriaBuilder.sum(
+//                criteriaBuilder.sum(
+//                        criteriaBuilder.sum(
+//                                criteriaBuilder.sum(
+//                                        criteriaBuilder.sum(
+//                                                criteriaBuilder.sum(
+//                                                        criteriaBuilder.sum(
+//                                                                criteriaBuilder.sum(
+//                                                                        criteriaBuilder.sum(
+//                                                                                root.get("pmHeat"),
+//                                                                                root.get("pmOnsu")
+//                                                                        ),
+//                                                                        root.get("pmGas")
+//                                                                ),
+//                                                                root.get("pmElec")
+//                                                        ),
+//                                                        root.get("pmWater")
+//                                                ),
+//                                                root.get("pmSeptic")
+//                                        ),
+//                                        root.get("pmWaste")
+//                                ),
+//                                root.get("pmOpercost")
+//                        ),
+//                        root.get("pmInsure")
+//                )
+//        );
+//
+//        criteriaQuery.multiselect(dbYear, sumExpression);
+//        criteriaQuery.groupBy(dbYear);
+//
+//        List<Tuple> resultList = entityManager.createQuery(criteriaQuery).getResultList();
+//
+//        List<SumByYear> result = new ArrayList<>();
+//        for (Tuple tuple : resultList) {
+//            Integer year = tuple.get((com.querydsl.core.types.Expression<Integer>) dbYear);
+//            Long sum = tuple.get((com.querydsl.core.types.Expression<Long>) sumExpression);
+//            result.add(new SumByYear(year, sum));
+//        }
+//
+//        return result;
+//
+//    }
+    //컬럼별 합계 구하는 메소드
+
 }
