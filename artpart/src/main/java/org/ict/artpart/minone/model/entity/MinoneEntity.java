@@ -1,7 +1,6 @@
 package org.ict.artpart.minone.model.entity;
 
 import lombok.*;
-import org.ict.artpart.minone.model.dto.MinoneDto;
 
 import javax.persistence.*;
 
@@ -27,19 +26,19 @@ public class MinoneEntity {
     //name 속성은 식별자 생성기의 이름 지정 ("MIN_IDX"라는 이름을 사용하도록 설정)
     //sequenceName => 데이터베이스에서 사용할 시퀀스(sequence)의 이름을 지정 ( "MIN_IDX"라는 이름의 시퀀스를 사용하도록 설정)
     //allocationSize => 시퀀스에서 한 번에 할당할 값의 개수를 지정합니다. (시퀀스에서 한 번에 1씩 증가하는 값을 가져오도록 설정)
-    @Column(name="MIN_IDX", nullable = false)//nullable=false => null 불가 //민원번호(SEQUENCE)
+    @Column(name="MIN_IDX")//nullable=false => null 불가 //민원번호(SEQUENCE)
     private Long minIdx;
 
-    @Column(name="MEMBER_IDX", nullable = false)//입주민 번호
+    @Column(name="MEMBER_IDX")//입주민 번호
     private Long memberIdx;
 
-    @Column(name="MIN_TITLE", nullable = false)//민원제목
+    @Column(name="MIN_TITLE")//민원제목
     private String minTitle;
 
-    @Column(name="MIN_TYPE", nullable = false)//민원내용
+    @Column(name="MIN_TYPE")//민원내용
     private String minType;
 
-    @Column(name="MIN_STATUS", nullable = false)//처리상황
+    @Column(name="MIN_STATUS")//처리상황
     private String minStatus;
 
     @Column(name="MIN_RES")//관리자답변
@@ -55,21 +54,8 @@ public class MinoneEntity {
     private String minCategory;
 
 
-    public MinoneDto toDto() {
-        MinoneDto dto = new MinoneDto();
-        dto.setMinIdx(this.minIdx);
-        dto.setMemberIdx(this.memberIdx);
-        dto.setMinTitle(this.minTitle);
-        dto.setMinType(this.minType);
-        dto.setMinStatus(this.minStatus);
-        dto.setMinRes(this.minRes);
-        dto.setMinFile(this.minFile);
-        dto.setMinRename(this.minRename);
-        dto.setMinCategory(this.minCategory);
-
-        return dto;
     }
-}
+
 
 
 
