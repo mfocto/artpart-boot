@@ -1,14 +1,7 @@
 package org.ict.artpart.minone.model.entity;
 
-import org.ict.artpart.minone.model.dto.MinoneDto;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import java.util.List;
-
 
 
 @Repository
@@ -21,6 +14,6 @@ public interface MinoneRepository extends JpaRepository<MinoneEntity, Long>  {
     List<CrudEntity> searchParamRepo(@Param("name") String name);
     */
 
-    List<MinoneEntity> findByMemberIdx(Long memberIdx);
-
+    MinoneEntity findByMemberIdx(Long memberIdx);
+    MinoneEntity findByMinIdx(Long minIdx);
 }
