@@ -20,6 +20,7 @@ public class PaymentMemberController {
 
     private final PaymentMemberService paymentMemberService;
 
+    //월별/년도별  Map 메소드
     @GetMapping("payment/list")
     public HashMap<String,List<PaymentMemberDto>> paymentMemberList(){
 
@@ -30,4 +31,5 @@ public class PaymentMemberController {
 //    public List<PaymentMemberDto> pmYearList(){
 //        return paymentMemberService.getPmYearList();
 //    }
+
 }

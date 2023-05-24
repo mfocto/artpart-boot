@@ -24,27 +24,27 @@ public class QPaymentMemberEntity extends EntityPathBase<PaymentMemberEntity> {
 
     public final org.ict.artpart.member.entity.QMemberEntity memberNo;
 
-    public final DatePath<java.sql.Date> pmDate = createDate("pmDate", java.sql.Date.class);
+    public final DateTimePath<java.util.Date> pmDate = createDateTime("pmDate", java.util.Date.class);
 
-    public final NumberPath<Integer> pmElec = createNumber("pmElec", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmElec = createNumber("pmElec", java.math.BigDecimal.class);
 
-    public final NumberPath<Integer> pmGas = createNumber("pmGas", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmGas = createNumber("pmGas", java.math.BigDecimal.class);
 
-    public final NumberPath<Integer> pmHeat = createNumber("pmHeat", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmHeat = createNumber("pmHeat", java.math.BigDecimal.class);
 
     public final NumberPath<Long> pmIdx = createNumber("pmIdx", Long.class);
 
-    public final NumberPath<Integer> pmInsure = createNumber("pmInsure", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmInsure = createNumber("pmInsure", java.math.BigDecimal.class);
 
-    public final NumberPath<Integer> pmOnsu = createNumber("pmOnsu", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmOnsu = createNumber("pmOnsu", java.math.BigDecimal.class);
 
-    public final NumberPath<Integer> pmOpercost = createNumber("pmOpercost", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmOpercost = createNumber("pmOpercost", java.math.BigDecimal.class);
 
-    public final NumberPath<Integer> pmSeptic = createNumber("pmSeptic", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmSeptic = createNumber("pmSeptic", java.math.BigDecimal.class);
 
-    public final NumberPath<Integer> pmWaste = createNumber("pmWaste", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmWaste = createNumber("pmWaste", java.math.BigDecimal.class);
 
-    public final NumberPath<Integer> pmWater = createNumber("pmWater", Integer.class);
+    public final NumberPath<java.math.BigDecimal> pmWater = createNumber("pmWater", java.math.BigDecimal.class);
 
     public QPaymentMemberEntity(String variable) {
         this(PaymentMemberEntity.class, forVariable(variable), INITS);
