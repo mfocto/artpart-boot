@@ -26,7 +26,7 @@ public class UsingEntity {
 
     @ManyToOne
     @Comment("입주민 번호")
-    @JoinColumn(name = "MEMBER_IDX")
+    @JoinColumn(name = "MEMBERIDX")
     private MemberEntity memberIdx;
 
     @Comment("결제일자")
