@@ -35,4 +35,11 @@ public class NoticeController {
     public NoticeDto getNotice(@PathVariable Long id){
         return noticeService.getNotice(id);
     }
+
+    //최근 공지긍 3개 보기
+    @GetMapping("/member/main")
+    public List<NoticeDto> noticeTop3List(){
+        log.info("1111111");
+        return noticeService.getNoticeTop3();
+    }
 }
