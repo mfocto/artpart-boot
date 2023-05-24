@@ -11,6 +11,7 @@ import org.ict.artpartM.member.entity.MemberRepositoryCustom;
 import org.ict.artpartM.member.model.dto.MemberDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.List;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final MemberRepositoryCustom memberRepositoryCustom;
+    private final PasswordEncoder passwordEncoder;
 
     public Header<List<MemberDto>> getMemberList(
             Pageable pageable, SearchCondition searchCondition){
@@ -82,7 +84,7 @@ public class MemberService {
                 .memberho(memberDto.getMemberho())
                 .membername(memberDto.getMembername())
                 .memberid(memberDto.getMemberid())
-                .memberpassword(memberDto.getMemberpassword())
+                .memberpassword(passwordEncoder.encode(memberDto.getMemberpassword()))
                 .memberphone(memberDto.getMemberphone())
                 .memberloginok(memberDto.getMemberloginok())
                 .membermycar1(memberDto.getMembermycar1())
@@ -98,7 +100,7 @@ public class MemberService {
         MemberEntity entity = memberRepository.findByMemberidx(memberDto.getMemberidx());
         entity.setMembername(memberDto.getMembername());
         entity.setMemberid(memberDto.getMemberid());
-        entity.setMemberpassword(memberDto.getMemberpassword());
+        entity.setMemberpassword(passwordEncoder.encode(memberDto.getMemberpassword()));
         entity.setMemberphone(memberDto.getMemberphone());
         entity.setMemberloginok(memberDto.getMemberloginok());
         entity.setMembermycar1(memberDto.getMembermycar1());
