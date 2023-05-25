@@ -62,8 +62,8 @@ public class NoticeService {
                         .noticeDate(entity.getNoticeDate())
                         .build();
     }
-
-    public List<NoticeDto> getNoticeTop3() {
+    //메인페이지 최신공지글 3개
+    public Header<List<NoticeDto>> getNoticeTop3() {
         List<NoticeDto> list = new ArrayList<>();
         List<NoticeEntity> top3 = noticeRepository.findByTop3List();
         for(NoticeEntity entity : top3){
@@ -76,6 +76,6 @@ public class NoticeService {
                     .build();
             list.add(dto);
         }
-        return list;
+        return Header.OK(list);
     }
 }

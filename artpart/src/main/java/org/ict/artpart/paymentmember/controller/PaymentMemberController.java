@@ -22,9 +22,9 @@ public class PaymentMemberController {
 
     // 이번달/월별/년도별  Map 메소드
     @GetMapping("payment/list")
-    public HashMap<String,List<PaymentMemberDto>> paymentMemberList(){
+    public Header<HashMap<String,List<PaymentMemberDto>>> paymentMemberList(){
 
-        return paymentMemberService.getPmMonthList();
+        return paymentMemberService.getPaymentMemberList();
     }
 
 //    @GetMapping("payment/list")

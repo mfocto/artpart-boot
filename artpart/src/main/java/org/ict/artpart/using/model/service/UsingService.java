@@ -21,13 +21,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class UsingService {
-    private final UsingRepository usingRepository;
     private final UsingRepositoryCustom usingRepositoryCustom;
 
     public Header<List<UsingDto>> getUsingList(Pageable pageable) {
 
-    List<UsingDto> list = new ArrayList<UsingDto>();
-        Page<UsingEntity> usingEntities = usingRepositoryCustom.findAll(pageable);
+    List<UsingDto> list = new ArrayList<>();
+        Page<UsingEntity> usingEntities = usingRepositoryCustom.findAllUsing(pageable);
         for(UsingEntity  entity : usingEntities){
             UsingDto dto = UsingDto.builder()
                     .detailIdx(entity.getDetailIdx())
