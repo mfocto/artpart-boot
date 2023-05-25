@@ -24,6 +24,7 @@ public class VotingService {
     private final VotingRepository votingRepository;
     private final VotingRepositoryCustom votingRepositoryCustom;
     private final MemberRepositoryCustom memberRepositoryCustom;
+    private final ReplyRepositoryCustom replyRepositoryCustom;
 
     public Header<List<VotingDto>> getVotingList(
             Pageable pageable, SearchCondition searchCondition){
@@ -64,6 +65,12 @@ public class VotingService {
     public VotingDto getVoting(Long id){
         VotingEntity entity = votingRepository.findById(id).orElseThrow(() -> new RuntimeException("투표정보가없습니다."));
         long ab = memberRepositoryCustom.membercount();
+        long ac1 = replyRepositoryCustom.answer1(entity);
+        long ac2 = replyRepositoryCustom.answer2(entity);
+        long ac3 = replyRepositoryCustom.answer3(entity);
+        long ac4 = replyRepositoryCustom.answer4(entity);
+        long ac5 = replyRepositoryCustom.answer5(entity);
+
         return VotingDto.builder()
                 .votingidx(entity.getVotingidx())
                 .category(entity.getCategory())
@@ -79,6 +86,11 @@ public class VotingService {
                 .votingwriter(entity.getVotingwriter())
                 .votingstart(entity.getVotingstart())
                 .membercount(ab)
+                .answer1count(ac1)
+                .answer2count(ac2)
+                .answer3count(ac3)
+                .answer4count(ac4)
+                .answer5count(ac5)
                 .build();
     }
 

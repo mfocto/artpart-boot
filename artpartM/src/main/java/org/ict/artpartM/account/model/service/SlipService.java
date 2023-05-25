@@ -4,11 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ict.artpartM.account.entity.SlipEntity;
 import org.ict.artpartM.account.entity.SlipRepository;
+import org.ict.artpartM.account.entity.SlipRepositoryCustom;
 import org.ict.artpartM.account.model.dto.SlipDto;
+import org.ict.artpartM.common.SearchCondition;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +21,7 @@ import java.util.List;
 public class SlipService {
 
     private final SlipRepository slipRepository;
+    private final SlipRepositoryCustom slipRepositoryCustom;
 
     public SlipEntity create(SlipDto slipDto) {
         SlipEntity entity = SlipEntity.builder()
@@ -34,11 +38,10 @@ public class SlipService {
         return slipRepository.save(entity);
     }
 
-    public List<SlipDto> getList() {
+    public List<SlipDto> getList(SearchCondition searchCondition) {
         List<SlipDto> dtos = new ArrayList<>();
-
-        List<SlipEntity> entities = slipRepository.findAll();
-        for(SlipEntity entity: entities){
+        List<SlipEntity> entities = slipRepositoryCustom.findAllBySearchCondition(searchCondition);
+        for (SlipEntity entity : entities) {
             SlipDto dto = SlipDto.builder()
                     .slipIdx(entity.getSlipIdx())
                     .slipNo(entity.getSlipNo())
@@ -49,10 +52,22 @@ public class SlipService {
                     .slipBrif(entity.getSlipBrif())
                     .slipCash(entity.getSlipCash())
                     .slipNote(entity.getSlipNote())
+                    .slipType(entity.getSlipType())
                     .build();
             dtos.add(dto);
         }
 
         return dtos;
+    }
+
+    public SlipEntity update(SlipDto slipDto) {
+        SlipEntity entity = slipRepository.findBySlipIdx(slipDto.getSlipIdx());
+        entity.setSlipType(slipDto.getSlipType());
+        entity.setSlipItem(slipDto.getSlipItem());
+        entity.setSlipComp(slipDto.getSlipComp());
+        entity.setSlipBrif(slipDto.getSlipBrif());
+        entity.setSlipCash(slipDto.getSlipCash());
+        entity.setSlipNote(slipDto.getSlipNote());
+        return slipRepository.save(entity);
     }
 }
