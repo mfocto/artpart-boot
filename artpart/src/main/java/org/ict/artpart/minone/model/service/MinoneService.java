@@ -2,9 +2,16 @@ package org.ict.artpart.minone.model.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ict.artpart.common.Header;
+import org.ict.artpart.common.SearchCondition;
 import org.ict.artpart.minone.model.dto.MinoneDto;
 import org.ict.artpart.minone.model.entity.MinoneEntity;
 import org.ict.artpart.minone.model.entity.MinoneRepository;
+import org.ict.artpart.notice.entity.NoticeEntity;
+import org.ict.artpart.notice.entity.NoticeRepositoryCustom;
+import org.ict.artpart.notice.model.dto.NoticeDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +27,7 @@ import java.util.Optional;
 @Transactional
 public class MinoneService {
     private final MinoneRepository minoneRepository;
-
+    private final NoticeRepositoryCustom noticeRepositoryCustom;
 
 
 
@@ -37,6 +44,25 @@ public class MinoneService {
                 .build();                                               //빌드 하여라
         return minoneRepository.save(entity);           //되돌려 주어라  //민원 Repository안에 저장해서(민원entity안에 담은 후에)
     }//close
+
+//    public Header<List<MinoneDto>> getMinoneList(
+//            Pageable pageable, SearchCondition searchCondition) {
+//        List<MinoneDto> dtos = new ArrayList<>(
+//
+//        Page<MinoneEntity> minoneEntities = minoneRepositoryCustom.findAllBySearchCondition(pageable, searchCondition);
+//
+//        for(MinoneEntity entity : minoneEntities){
+//            MinoneDto dto = MinoneDto.builder()
+//                    .memberidx(entity.getMemberidx())
+//                    .mintitle(entity.getMintitle())
+//                    .mintype(entity.getMintype())
+//                    .minstatus(entity.getMinstatus())
+//                    .minres(entity.getMinres())
+//                    .mincategory(entity.getMincategory())
+//                    .build();
+//
+//            dtos.add(dto);
+//    }
 
     //########################################################################
     //민원 글 수정
