@@ -21,7 +21,7 @@ import java.util.List;
 public class NoticeService {
     private final NoticeRepository noticeRepository;
     private final NoticeRepositoryCustom noticeRepositoryCustom;
-    //월별 관리비
+    //공지글 목록
     public Header<List<NoticeDto>> getNoticeList(
             Pageable pageable, SearchCondition searchCondition) {
         List<NoticeDto> list = new ArrayList<>();
@@ -51,6 +51,7 @@ public class NoticeService {
         return Header.OK(list, pagination);
     }
 
+    //공지글 상세보기
     public NoticeDto getNotice(Long id) {
         NoticeEntity entity = noticeRepository.findById(id).orElseThrow(() -> new RuntimeException("공지글을 찾을 수 없습니다."));
                 return NoticeDto.builder()
@@ -60,5 +61,21 @@ public class NoticeService {
                         .content(entity.getContent())
                         .noticeDate(entity.getNoticeDate())
                         .build();
+    }
+
+    public List<NoticeDto> getNoticeTop3() {
+        List<NoticeDto> list = new ArrayList<>();
+        List<NoticeEntity> top3 = noticeRepository.findByTop3List();
+        for(NoticeEntity entity : top3){
+            NoticeDto dto = NoticeDto.builder()
+                    .noticeIdx(entity.getNoticeIdx())
+                    .noticeDate(entity.getNoticeDate())
+                    .content(entity.getContent())
+                    .writer(entity.getWriter())
+                    .title(entity.getTitle())
+                    .build();
+            list.add(dto);
+        }
+        return list;
     }
 }

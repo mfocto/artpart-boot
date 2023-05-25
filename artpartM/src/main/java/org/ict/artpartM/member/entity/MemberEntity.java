@@ -30,9 +30,9 @@ public class MemberEntity {
     private String memberho;
     @Column(name = "MEMBERNAME")
     private String membername;
-    @Column(name = "MEMBERID")
+    @Column(name = "MEMBERID" , columnDefinition = "String default '1111'")
     private String memberid;
-    @Column(name = "MEMBERPASSWORD")
+    @Column(name = "MEMBERPASSWORD", columnDefinition = "String default '1111'")
     private String memberpassword;
     @Column(name = "MEMBERPHONE")
     private String memberphone;

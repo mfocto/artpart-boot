@@ -6,14 +6,10 @@ import org.ict.artpart.minone.model.dto.MinoneDto;
 import org.ict.artpart.minone.model.entity.MinoneEntity;
 import org.ict.artpart.minone.model.entity.MinoneRepository;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import javassist.NotFoundException;
-
 
 import javax.transaction.Transactional;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,58 +21,106 @@ import java.util.Optional;
 public class MinoneService {
     private final MinoneRepository minoneRepository;
 
+
+
+
     //########################################################################
-    //새 글 작성
-    public MinoneDto post(MinoneDto minoneDto) {
-        MinoneEntity minoneEntity = minoneDto.toEntity();
-        MinoneEntity result = minoneRepository.save(minoneEntity);
-        return result.toDto();
-    }
+    //새 글 등록 (**컬럼에 있는 값들은 내가 vue.js에서 사용하지 않더라도 모두 boot에 있어야 함)
+    public MinoneEntity create(MinoneDto minoneDto) {       //entity안에 dto를 넣는 메소드임
+        MinoneEntity entity = MinoneEntity.builder()
+                .minidx(minoneDto.getMinidx())
+                .memberidx(minoneDto.getMemberidx())
+                .mintitle(minoneDto.getMintitle())
+                .mintype(minoneDto.getMintype())
+                .minstatus(minoneDto.getMinstatus())
+                .minres(minoneDto.getMinres())
+                .minfile(minoneDto.getMinfile())
+                .minrename(minoneDto.getMinrename())
+                .mincategory(minoneDto.getMincategory())
+                .build();                                               //빌드 하여라
+        return minoneRepository.save(entity);           //되돌려 주어라  //민원 Repository안에 저장해서(민원entity안에 담은 후에)
+    }//close
+
+    //########################################################################
+    //민원 글 수정
+//    public MinoneEntity update(MinoneDto minoneDto){
+//        MinoneEntity entity = minoneRepository.findByMinidx(minoneDto.getMinidx());
+//        entity.setMintitle(minoneDto.getMintitle());
+//        entity.setMintype(minoneDto.getMintype());
+//        entity.setMinstatus(minoneDto.getMinstatus());
+//        entity.setMinres(minoneDto.getMinres());
+//        entity.setMinrename(minoneDto.getMinrename());
+//        entity.setMincategory(minoneDto.getMincategory());
+//        return minoneRepository.save(entity);
+//    }//close
+
+
+
+
+    //########################################################################
+
+
+//    public List<MinoneDto> getMinoneList() {
+//
+//            List<MinoneEntity> minoneEntityList = minoneRepository.findAll();
+//            List<MinoneDto> list = new ArrayList<>();
+//
+//            for (MinoneEntity entity : minoneEntityList) {
+//                MinoneDto dto = MinoneDto.builder()
+//                        .minidx(entity.getMinidx())
+//                        .memberidx(entity.getMemberidx())
+//                        .mintitle(entity.getMintitle())
+//                        .mintype(entity.getMintype())
+//                        .minstatus(entity.getMinstatus())
+//                        .minrename(entity.getMinrename())
+//                        .mincategory(entity.getMincategory())
+////                        .enrollDate(entity.getEnrollDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+////                        .lastModified(entity.getLastModified().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+//                        .build();
+//                list.add(dto);
+//            }//for
+//            return list;
+//        }//close
+
+    //########################################################################
+    //상세보기(특정 게시글 조회)
+//    public MinoneDto getMinone(Long memberidx) {
+//        minoneRepository.findById(memberidx);
+//        List<MinoneEntity> minoneEntityList = minoneRepository.findAll();
+//        List<MinoneDto> list = new ArrayList<>();
+//
+//        for (MinoneEntity entity : minoneEntityList) {
+//                MinoneDto dto = MinoneDto.builder()
+//                .minidx(entity.getMinidx())
+//                .mintitle(entity.getMintitle())
+//                .mintype(entity.getMintype())
+//                .minstatus(entity.getMinstatus())
+//                .minrename(entity.getMinrename())
+//                .mincategory(entity.getMincategory())
+//                .build();
+//            list.add(dto);
+//        }//for
+//        return (MinoneDto) list;
+//    }//close
+
 
 
     //########################################################################
     //민원번호로 민원 전체리스트 조회
-    public List<MinoneEntity> list() throws Exception {
-        return minoneRepository.findAll(Sort.by(Sort.Direction.DESC, "minIdx"));
-    }
+//    public List<MinoneEntity> list() throws Exception {
+//        return minoneRepository.findAll(Sort.by(Sort.Direction.DESC, "minidx"));
+//    }//close
+
+
+
+
 
     //########################################################################
-    //해당 입주민이 작성한 글 조회
-    //minIdx에 해당하는 MinoneEntity를 조회하고, 이를 MinoneDto로 변환하여 리턴
-    public MinoneDto view(Long minIdx) throws NotFoundException {
-        Optional<MinoneEntity> minoneEntity = minoneRepository.findById(minIdx);
-
-        if (minoneEntity.isPresent()) {
-            return minoneEntity.get().toDto();
-        } else {
-            throw new NotFoundException("리소스를 찾을 수 없습니다.");
-        }
-    }
-
-    //########################################################################
-    //민원 글 수정
-    public MinoneDto update(MinoneDto model, Long minIdx) throws Exception{
-        MinoneDto minoneDto = view(minIdx);
-
-        minoneDto.setMinTitle(model.getMinTitle());
-        minoneDto.setMinType(model.getMinType());
-        // Set other properties as needed
-
-        MinoneEntity minoneEntity = minoneDto.toEntity();
-        minoneEntity.setMinIdx(minIdx);
-        MinoneEntity result = minoneRepository.save(minoneEntity);
-
-        return new MinoneDto(result);
-    }
-
-    //########################################################################
-    //글삭제
-    public void delete(Long minIdx) throws Exception {
-        this.view(minIdx);
-        minoneRepository.deleteById(minIdx);
-    }
-
-
-
+    //삭제
+//    public void delete(Long id) {
+//        MinoneEntity entity = minoneRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("민원을 찾을 수 없습니다."));
+//        minoneRepository.delete(entity);
+//    }//close
 
 } //all close

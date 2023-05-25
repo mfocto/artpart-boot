@@ -1,15 +1,13 @@
 package org.ict.artpart.paymentmember.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.ict.artpart.member.entity.MemberEntity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Entity
@@ -30,47 +28,44 @@ public class PaymentMemberEntity {
     @Comment("입주민번호")
     private MemberEntity memberNo;
 
-    @Column(name = "PMDATE")
+    @Column(name = "PMDATE" , columnDefinition = "DATE")
     @Comment("일자")
-    private LocalDateTime pmDate;
+    private Date pmDate;
 
     @Column(name = "PMHEAT")
     @Comment("난방비")
-    private int pmHeat;
+    private BigDecimal pmHeat;
 
     @Column(name = "PMONSU")
     @Comment("급탕비(온수)")
-    private int pmOnsu;
+    private BigDecimal pmOnsu;
 
     @Column(name = "PMGAS")
     @Comment("가스사용")
-    private int pmGas;
+    private BigDecimal pmGas;
 
     @Column(name = "PMELEC")
     @Comment("전기세")
-    private int pmElec;
+    private BigDecimal pmElec;
 
     @Column(name = "PMWATER")
     @Comment("수도세")
-    private int pmWater;
+    private BigDecimal pmWater;
 
     @Column(name = "PMSEPTIC")
     @Comment("정화조오물수수료")
-    private int pmSeptic;
+    private BigDecimal pmSeptic;
 
     @Column(name = "PMWASTE")
     @Comment("생활폐기물수수료")
-    private int pmWaste;
+    private BigDecimal pmWaste;
 
     @Column(name = "PMOPERCOST")
     @Comment("관리위원회운영비")
-    private int pmOpercost;
+    private BigDecimal pmOpercost;
 
     @Column(name = "PMINSURE")
     @Comment("건물보험료")
-    private int pmInsure;
-
-
-
+    private BigDecimal pmInsure;
 
 }
