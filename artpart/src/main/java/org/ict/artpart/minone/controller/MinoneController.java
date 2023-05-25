@@ -12,9 +12,10 @@ import java.util.List;
 
 
     @Slf4j
-    @RestController
+    @CrossOrigin
     @AllArgsConstructor
-    @RequestMapping(value ="/minone" )      // "/localhost에서 접속 시 뭐로 구분할건지" > localhost:8080/test 이런 식으로 사용하게 됨
+    @RestController
+    //@RequestMapping(value ="/minone" )      // "/localhost에서 접속 시 뭐로 구분할건지" > localhost:8080/test 이런 식으로 사용하게 됨
     public class MinoneController {
 
         private final MinoneService minoneService;
@@ -22,7 +23,7 @@ import java.util.List;
 
         //########################################################################
         //새 글 등록
-        @PostMapping("/pageminoneform/newMin")
+        @PostMapping("/newmin")
         public MinoneEntity create(@RequestBody MinoneDto minoneDto){
         log.info("Minone : " + minoneDto);
             return  minoneService.create(minoneDto); }
@@ -48,7 +49,7 @@ import java.util.List;
 
 
         //상세보기용(특정 게시글 조회)
-//        @GetMapping("/pageminoneform/read/{memberidx}")
+//        @GetMapping("/pageminoneform/read/{minidx}")
 //        public MinoneDto getMinone(@PathVariable Long memberidx){
 //            return minoneService.getMinone(memberidx); }
 

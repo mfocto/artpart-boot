@@ -28,14 +28,11 @@ public class MinoneService {
     //새 글 등록 (**컬럼에 있는 값들은 내가 vue.js에서 사용하지 않더라도 모두 boot에 있어야 함)
     public MinoneEntity create(MinoneDto minoneDto) {       //entity안에 dto를 넣는 메소드임
         MinoneEntity entity = MinoneEntity.builder()
-                .minidx(minoneDto.getMinidx())
                 .memberidx(minoneDto.getMemberidx())
                 .mintitle(minoneDto.getMintitle())
                 .mintype(minoneDto.getMintype())
                 .minstatus(minoneDto.getMinstatus())
                 .minres(minoneDto.getMinres())
-                .minfile(minoneDto.getMinfile())
-                .minrename(minoneDto.getMinrename())
                 .mincategory(minoneDto.getMincategory())
                 .build();                                               //빌드 하여라
         return minoneRepository.save(entity);           //되돌려 주어라  //민원 Repository안에 저장해서(민원entity안에 담은 후에)
@@ -49,7 +46,6 @@ public class MinoneService {
 //        entity.setMintype(minoneDto.getMintype());
 //        entity.setMinstatus(minoneDto.getMinstatus());
 //        entity.setMinres(minoneDto.getMinres());
-//        entity.setMinrename(minoneDto.getMinrename());
 //        entity.setMincategory(minoneDto.getMincategory());
 //        return minoneRepository.save(entity);
 //    }//close
@@ -72,7 +68,6 @@ public class MinoneService {
 //                        .mintitle(entity.getMintitle())
 //                        .mintype(entity.getMintype())
 //                        .minstatus(entity.getMinstatus())
-//                        .minrename(entity.getMinrename())
 //                        .mincategory(entity.getMincategory())
 ////                        .enrollDate(entity.getEnrollDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
 ////                        .lastModified(entity.getLastModified().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
@@ -95,7 +90,6 @@ public class MinoneService {
 //                .mintitle(entity.getMintitle())
 //                .mintype(entity.getMintype())
 //                .minstatus(entity.getMinstatus())
-//                .minrename(entity.getMinrename())
 //                .mincategory(entity.getMincategory())
 //                .build();
 //            list.add(dto);
