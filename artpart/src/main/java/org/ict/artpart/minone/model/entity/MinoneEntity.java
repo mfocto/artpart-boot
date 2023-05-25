@@ -27,31 +27,31 @@ public class MinoneEntity {
     //sequenceName => 데이터베이스에서 사용할 시퀀스(sequence)의 이름을 지정 ( "MIN_IDX"라는 이름의 시퀀스를 사용하도록 설정)
     //allocationSize => 시퀀스에서 한 번에 할당할 값의 개수를 지정합니다. (시퀀스에서 한 번에 1씩 증가하는 값을 가져오도록 설정)
     @Column(name="MIN_IDX")//nullable=false => null 불가 //민원번호(SEQUENCE)
-    private Long minIdx;
+    private Long minidx;
 
     @Column(name="MEMBER_IDX")//입주민 번호
-    private Long memberIdx;
+    private Long memberidx;
 
     @Column(name="MIN_TITLE")//민원제목
-    private String minTitle;
+    private String mintitle;
 
     @Column(name="MIN_TYPE")//민원내용
-    private String minType;
+    private String mintype;
 
     @Column(name="MIN_STATUS")//처리상황
-    private String minStatus;
+    private String minstatus;
 
     @Column(name="MIN_RES")//관리자답변
-    private String minRes;
+    private String minres;
 
     @Column(name="MIN_FILE")//원본파일
-    private String minFile;
+    private String minfile;
 
     @Column(name="MIN_RENAME")//변경파일
-    private String minRename;
+    private String minrename;
 
-    @Column(name="MIN_CATEGORY", nullable = false)//카테고리
-    private String minCategory;
+    @Column(name="MIN_CATEGORY")//카테고리
+    private String mincategory;
 
 
     }
