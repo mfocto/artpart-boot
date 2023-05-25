@@ -30,7 +30,7 @@ public class NoticeService {
 
         for(NoticeEntity entity : noticeEntities){
             NoticeDto dto = NoticeDto.builder()
-                    .noticeIdx(entity.getNoticeIdx())
+                    .noticeidx(entity.getNoticeidx())
                     .writer(entity.getWriter())
                     .title(entity.getTitle())
                     .content(entity.getContent())
@@ -55,7 +55,7 @@ public class NoticeService {
     public NoticeDto getNotice(Long id) {
         NoticeEntity entity = noticeRepository.findById(id).orElseThrow(() -> new RuntimeException("공지글을 찾을 수 없습니다."));
                 return NoticeDto.builder()
-                        .noticeIdx(entity.getNoticeIdx())
+                        .noticeidx(entity.getNoticeidx())
                         .writer(entity.getWriter())
                         .title(entity.getTitle())
                         .content(entity.getContent())
@@ -68,7 +68,7 @@ public class NoticeService {
         List<NoticeEntity> top3 = noticeRepository.findByTop3List();
         for(NoticeEntity entity : top3){
             NoticeDto dto = NoticeDto.builder()
-                    .noticeIdx(entity.getNoticeIdx())
+                    .noticeidx(entity.getNoticeidx())
                     .noticeDate(entity.getNoticeDate())
                     .content(entity.getContent())
                     .writer(entity.getWriter())
