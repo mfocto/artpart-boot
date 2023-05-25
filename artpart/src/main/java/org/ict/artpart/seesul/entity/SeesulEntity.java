@@ -1,0 +1,34 @@
+package org.ict.artpart.seesul.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.ict.artpart.emp.entity.EmpEntity;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "SEESUL")
+@Entity
+public class SeesulEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SIDX")
+    @SequenceGenerator(name="SIDX", sequenceName = "S_IDX", allocationSize=1)
+    @Column(name = "SIDX")
+    private long sidx;
+    @Column(name = "SCATEGORY")
+    private String scategory;
+    @Column(name = "SDATE", columnDefinition = "date default sysdate")
+    private LocalDate sdate;
+    @ManyToOne
+    @JoinColumn(name = "SWIRITER")
+    private EmpEntity swiriter;
+
+}
+
+
