@@ -18,8 +18,6 @@ public class MinoneDto {
     private String mintype;          //민원내용
     private String minstatus;        //처리상황
     private String minres;            //관리자답변
-    private String minfile;           //원본파일
-    private String minrename;      //변경파일
     private String mincategory;   //카테고리
 
 
