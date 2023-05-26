@@ -37,11 +37,11 @@ public class CarService {
                     .empCarid(entity.getEmpCarid())
                     .carDivisionId(entity.getCarDivisionId())
                     .carPhone(entity.getCarPhone())
-                    .carEnrolldate(String.valueOf(entity.getCarEnrolldate().toLocalDate()))
+                    .carEnrolldate(entity.getCarEnrolldate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .carType(entity.getCarType())
                     .carNote(entity.getCarNote())
-                    .carStartdate(String.valueOf(entity.getCarStartdate().toLocalDate()))
-                    .carEnddate(String.valueOf(entity.getCarEnddate().toLocalDate()))
+                    .carStartdate(entity.getCarStartdate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .carEnddate(entity.getCarEnddate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
             carList.add(carData);
         }

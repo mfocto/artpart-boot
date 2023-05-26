@@ -17,16 +17,18 @@ import static org.ict.artpart.using.entity.QUsingEntity.usingEntity;
 public class UsingRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
-    public Page<UsingEntity> findAll(Pageable pageable){
+    public Page<UsingEntity> findAllUsing(Pageable pageable){
         JPAQuery<UsingEntity> query = queryFactory.selectFrom(usingEntity);
 
         long total = query.stream().count();
+        System.out.println("11111 : " + total);
 
         List<UsingEntity> results = query
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(usingEntity.paymentDedLine.desc())
+                .orderBy(usingEntity.detailIdx.desc())
                 .fetch();
+
         return new PageImpl<>(results, pageable, total);
     }
 

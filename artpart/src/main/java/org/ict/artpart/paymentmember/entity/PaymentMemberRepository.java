@@ -32,11 +32,12 @@ public interface PaymentMemberRepository extends JpaRepository<PaymentMemberEnti
             "ORDER BY rn desc", nativeQuery = true)
     List<Object[]> findByPmSixMonth();
 
-    @Query(value = "SELECT PMDATE, PMHEAT, PMONSU, PMGAS, PMELEC, PMWATER, PMSEPTIC, PMWASTE, PMOPERCOST, PMINSURE FROM " +
+    //이번달 관리비
+    @Query(value = "SELECT * FROM " +
             "(SELECT PMDATE, PMHEAT, PMONSU, PMGAS, PMELEC, PMWATER, PMSEPTIC, PMWASTE, PMOPERCOST, PMINSURE, " +
             "ROW_NUMBER() OVER (ORDER BY PMDATE DESC) AS rn " +
             "FROM PAYMENT_MEMBER) " +
             "WHERE rn <= 2" , nativeQuery = true)
-    List<Object[]> finByPaymentOne();
+    List<Object[]> findByPmMonth();
 }
 

@@ -27,8 +27,5 @@ public class ReadController {
         return readService.getReadList(pageable, searchCondition);
     }
 
-    @PatchMapping("/read")
-    public ReadEntity update(@RequestBody ReadDto readDto) { return readService.update(readDto); }
-
 
 }
