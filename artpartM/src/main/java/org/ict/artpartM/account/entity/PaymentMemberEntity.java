@@ -38,7 +38,7 @@ public class PaymentMemberEntity {
     private long PMSeptic;
     @Column(name = "PMWASTE")
     private long PMWaste;
-    @Column(name = "PMOPER")
+    @Column(name = "PMOPERCOST")
     private long PMOpercost;
     @Column(name = "PMINSURE")
     private long PMInsure;
