@@ -24,4 +24,9 @@ public class VotingDto {
     private String votingwriter;
     private String votingstart;
     private long membercount;
+    private long answer1count;
+    private long answer2count;
+    private long answer3count;
+    private long answer4count;
+    private long answer5count;
 }
