@@ -38,8 +38,7 @@ public class NoticeController {
 
     //최근 공지긍 3개 보기
     @GetMapping("/member/main")
-    public List<NoticeDto> noticeTop3List(){
-        log.info("1111111");
+    public Header<List<NoticeDto>> noticeTop3List(){
         return noticeService.getNoticeTop3();
     }
 }

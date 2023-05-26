@@ -1,20 +1,23 @@
 package org.ict.artpartM.empSchedule.model.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class EmpScheduleDto {
-    private long sIdx;
-    private String sEmpId;
-    private String startDate;
-    private String endDate;
+public class EventDto {
+    private Long eventId;
+    private String title;
     private String description;
-    private String endTibackgroundColorme;
+    private String start;
+    private String end;
+    private String backgroundColor;
+
+
 }
