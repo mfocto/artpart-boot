@@ -34,7 +34,7 @@ public class NoticeRepositoryCustom {
                 .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(noticeEntity.noticeIdx.desc())
+                .orderBy(noticeEntity.noticeidx.desc())
                 .fetch();
 
         return new PageImpl<>(results, pageable, total);
