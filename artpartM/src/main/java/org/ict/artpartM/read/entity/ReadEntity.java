@@ -21,7 +21,7 @@ public class ReadEntity {
     @Column(name = "READIDX")
     private long readidx;
     @ManyToOne
-    @JoinColumn(name = "memberidx")
+    @JoinColumn(name = "MEMBERIDX")
     private MemberEntity memberidx;
     @NotNull
     @Column(name = "ELECTRIC")
