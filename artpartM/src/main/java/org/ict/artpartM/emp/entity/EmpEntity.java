@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "EMP")
 @Entity
 public class EmpEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMP_IDX")
     @SequenceGenerator(name = "EMP_IDX", sequenceName = "EMP_IDX", allocationSize = 1)

@@ -20,14 +20,14 @@ public class EmpScheduleEntity {
     @SequenceGenerator(name="SCHEDULE_IDX", sequenceName = "SCHEDULE_IDX", allocationSize=1)
     @Column(name="SCHEDULE_IDX")
     private long sIdx;
-    @Column(name="EMP_SID")
+    @Column(name="SCHEDULE_SID")
     private String empSid;
-    @Column(name="EMP_STARTDATE")
+    @Column(name="SCHEDULE_STARTDATE")
     private LocalDate startDate;
-    @Column(name="EMP_ENDDATE")
+    @Column(name="SCHEDULE_ENDDATE")
     private LocalDate endDate;
-    @Column(name="EMP_STARTTIME")
-    private LocalTime startTime;
-    @Column(name="EMP_ENDTIME")
-    private LocalTime endTime;
+    @Column(name="SCHEDULE_DESCRIPTION")
+    private String description;
+    @Column(name="SCHEDULE_BACKGROUND_COLOR")
+    private String backgroundColor;
 }
