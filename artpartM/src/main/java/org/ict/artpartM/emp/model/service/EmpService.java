@@ -47,6 +47,7 @@ public class EmpService {
     public EmpDto getEmp(String empId) {
         EmpEntity entity = empRepository.findByEmpId(empId);
         EmpDto dto = EmpDto.builder()
+                .empIdx(entity.getEmpIdx())
                 .empId(entity.getEmpId())
                 .empEmail(entity.getEmpEmail())
                 .empAddress(entity.getEmpAddress())
@@ -57,6 +58,7 @@ public class EmpService {
         return dto;
     }
 
+    //직원 리스트 출력
     public Header<List<EmpDto>> empList(Pageable pageable, SearchCondition searchCondition) {
         List<EmpDto> empList = new ArrayList<>();
 
@@ -151,7 +153,8 @@ public class EmpService {
         return empRepository.save(entity);
     }
 
-    public EmpEntity updateEmpDepartureDate(EmpDto empDto) {
+
+    public EmpEntity updateEmpDeparture(EmpDto empDto) {
         EmpEntity entity = empRepository.findByEmpIdx(empDto.getEmpIdx());
         entity.setEmpId(empDto.getEmpId());
         entity.setEmpPermanentId(empDto.getEmpPermanentId());
@@ -167,6 +170,7 @@ public class EmpService {
         entity.setEmpImg(empDto.getEmpImg());
         entity.setEmpImgUp(empDto.getEmpImgUp());
         entity.setEmpMemo(empDto.getEmpMemo());
+        entity.setEmpAuth(empDto.getEmpAuth());
         return empRepository.save(entity);
     }
 }
