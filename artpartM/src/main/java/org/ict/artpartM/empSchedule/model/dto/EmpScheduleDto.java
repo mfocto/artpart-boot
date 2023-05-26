@@ -15,6 +15,6 @@ public class EmpScheduleDto {
     private String sEmpId;
     private String startDate;
     private String endDate;
-    private String startTime;
-    private String endTime;
+    private String description;
+    private String endTibackgroundColorme;
 }

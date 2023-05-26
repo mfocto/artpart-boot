@@ -24,7 +24,7 @@ public class NoticeEntity {
     @SequenceGenerator(name = "NOTICEIDX", sequenceName = "NOTICEIDX", allocationSize = 1)
     @Column(name = "NOTICEIDX")
     @Comment("공지글 번호")
-    private long noticeIdx;
+    private long noticeidx;
 
     @ManyToOne
     @JoinColumn(name = "WRITER")

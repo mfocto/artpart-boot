@@ -68,25 +68,4 @@ public class PaymentMemberEntity {
     @Comment("건물보험료")
     private BigDecimal pmInsure;
 
-
-    //
-    public PaymentMemberEntity(Date pmDate, BigDecimal pmHeat) {
-        this.pmDate = pmDate;
-        this.pmHeat = pmHeat;
-    }
-    public PaymentMemberEntity(Date pmDate, BigDecimal pmHeat, BigDecimal pmOnsu, BigDecimal pmGas, BigDecimal pmElec,
-                               BigDecimal pmWater, BigDecimal pmSeptic, BigDecimal pmWaste, BigDecimal pmOpercost, BigDecimal pmInsure) {
-        this.pmDate = pmDate;
-        this.pmHeat = pmHeat;
-        this.pmOnsu = pmOnsu;
-        this.pmGas = pmGas;
-        this.pmElec = pmElec;
-        this.pmWater = pmWater;
-        this.pmSeptic = pmSeptic;
-        this.pmWaste = pmWaste;
-        this.pmOpercost = pmOpercost;
-        this.pmInsure = pmInsure;
-
-
-    }
 }

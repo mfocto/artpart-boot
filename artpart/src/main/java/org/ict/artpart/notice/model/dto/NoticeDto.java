@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class NoticeDto {
-    private long noticeIdx;     //공지글 번호
+    private long noticeidx;     //공지글 번호
     private EmpEntity writer;   //직원 등록번호
     private String title;       //제목
     private String content;     //내용

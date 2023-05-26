@@ -54,14 +54,17 @@ public class EmpController {
     public EmpEntity createEmp(@RequestBody EmpDto empdto){
         return empService.createEmp(empdto);
     }
+
     //직원 수정
     @PatchMapping("/admin/change")//직원 수정
     public EmpEntity updateEmp(@RequestBody EmpDto empDto){
         return empService.updateEmp(empDto);
     }
 
-    @PatchMapping("/admin/departureDate") //직원 퇴사
-    public EmpEntity updateEmpDepartureDate(@RequestBody EmpDto empDto){
-        return empService.updateEmpDepartureDate(empDto);
+    @PatchMapping("/admin/Departure")//직원 수정
+    public EmpEntity updateEmpDeparture(@RequestBody EmpDto empDto){
+        return empService.updateEmpDeparture(empDto);
     }
+
+
 }

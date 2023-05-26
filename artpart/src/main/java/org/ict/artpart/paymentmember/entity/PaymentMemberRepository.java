@@ -1,7 +1,5 @@
 package org.ict.artpart.paymentmember.entity;
 
-import org.ict.artpart.paymentmember.model.dto.PaymentMemberDto;
-import org.ict.artpart.paymentmember.model.dto.PaymentSumDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,22 +7,37 @@ import java.util.List;
 
 
 public interface PaymentMemberRepository extends JpaRepository<PaymentMemberEntity, Long> {
+    //연도별 평균
     @Query(value = " SELECT EXTRACT(YEAR FROM PMDATE) as PMDATE, " +
-            " SUM(PMHEAT) as PMHEAT, " +
-            " SUM(PMONSU) as PMONSU, " +
-            " SUM(PMGAS) as PMGAS, " +
-            " SUM(PMELEC) as PMELEC, " +
-            " SUM(PMWATER) as PMWATER, " +
-            " SUM(PMSEPTIC) as PMSEPTIC, " +
-            " SUM(PMWASTE) as PMWASTE, " +
-            " SUM(PMOPERCOST) as PMOPERCOST, " +
-            " SUM(PMINSURE) as PMINSURE" +
+            " AVG(PMHEAT) as PMHEAT, " +
+            " AVG(PMONSU) as PMONSU, " +
+            " AVG(PMGAS) as PMGAS, " +
+            " AVG(PMELEC) as PMELEC, " +
+            " AVG(PMWATER) as PMWATER, " +
+            " AVG(PMSEPTIC) as PMSEPTIC, " +
+            " AVG(PMWASTE) as PMWASTE, " +
+            " AVG(PMOPERCOST) as PMOPERCOST, " +
+            " AVG(PMINSURE) as PMINSURE" +
             " FROM PAYMENT_MEMBER " +
             " GROUP BY EXTRACT(YEAR FROM PMDATE)" +
-            " ORDER BY PMDATE ASC", nativeQuery = true)
-    List<Object[]> getPmSumByYear();
+            " ORDER BY PMDATE DESC", nativeQuery = true)
+    List<Object[]> findByPmSumByYear();
 
-    @Query(value = "SELECT PMDATE, (PMHEAT + PMONSU + PMGAS + PMELEC + PMWATER + PMSEPTIC + PMWASTE + PMOPERCOST + PMINSURE) AS PMHEAT FROM PAYMENT_MEMBER ORDER BY PMDATE DESC", nativeQuery = true)
-    List<Object[]> getPmSixMonth();
+    //최근 6개월 차트용
+    @Query(value = "SELECT * FROM " +
+            "(SELECT PMDATE, (PMHEAT + PMONSU + PMGAS + PMELEC + PMWATER + PMSEPTIC + PMWASTE + PMOPERCOST + PMINSURE) AS PMHEAT, " +
+            "ROW_NUMBER() OVER (ORDER BY PMDATE DESC) AS rn " +
+            "FROM PAYMENT_MEMBER) " +
+            "WHERE rn <= 6" +
+            "ORDER BY rn desc", nativeQuery = true)
+    List<Object[]> findByPmSixMonth();
+
+    //이번달 관리비
+    @Query(value = "SELECT * FROM " +
+            "(SELECT PMDATE, PMHEAT, PMONSU, PMGAS, PMELEC, PMWATER, PMSEPTIC, PMWASTE, PMOPERCOST, PMINSURE, " +
+            "ROW_NUMBER() OVER (ORDER BY PMDATE DESC) AS rn " +
+            "FROM PAYMENT_MEMBER) " +
+            "WHERE rn <= 2" , nativeQuery = true)
+    List<Object[]> findByPmMonth();
 }
 
