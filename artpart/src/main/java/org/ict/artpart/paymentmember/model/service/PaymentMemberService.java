@@ -2,6 +2,7 @@ package org.ict.artpart.paymentmember.model.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ict.artpart.common.Header;
 import org.ict.artpart.paymentmember.entity.PaymentMemberEntity;
 import org.ict.artpart.paymentmember.entity.PaymentMemberRepository;
 import org.ict.artpart.paymentmember.entity.PaymentMemberRepositoryCustom;
@@ -19,7 +20,7 @@ public class PaymentMemberService {
     private final PaymentMemberRepository paymentMemberRepository;
     private final PaymentMemberRepositoryCustom paymentMemberRepositoryCustom;
     //이번년도 월별납부
-    public HashMap<String,List<PaymentMemberDto>> getPmMonthList() {
+    public Header<HashMap<String,List<PaymentMemberDto>>> getPaymentMemberList() {
         List<PaymentMemberDto> monthList = new ArrayList<>();
         List<PaymentMemberDto> yearList = new ArrayList<>();
         List<PaymentMemberDto> sixMonthList = new ArrayList<>();
@@ -97,7 +98,7 @@ public class PaymentMemberService {
         list.put("yearList", yearList);
 
         //최근 관리비 전월 당월 비교
-        List<Object[]> recently = paymentMemberRepository.finByPaymentOne();
+        List<Object[]> recently = paymentMemberRepository.findByPmMonth();
         for(int i = 0; i < 2; i++){
             //i가 0일때 최근
             if(i == 0) {
@@ -154,7 +155,7 @@ public class PaymentMemberService {
             }
         }
         list.put("recentlyMonth", recentlyMonth);
-        return list;
+        return Header.OK(list);
     }
 
 }
