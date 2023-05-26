@@ -84,7 +84,9 @@ public class MemberService {
                 .memberho(memberDto.getMemberho())
                 .membername(memberDto.getMembername())
                 .memberid(memberDto.getMemberid())
+
                 .memberpassword(passwordEncoder.encode(memberDto.getMemberpassword() != null ? memberDto.getMemberpassword() : "0"))
+
                 .memberphone(memberDto.getMemberphone())
                 .memberloginok(memberDto.getMemberloginok())
                 .membermycar1(memberDto.getMembermycar1())
@@ -100,7 +102,9 @@ public class MemberService {
         MemberEntity entity = memberRepository.findByMemberidx(memberDto.getMemberidx());
         entity.setMembername(memberDto.getMembername());
         entity.setMemberid(memberDto.getMemberid());
+
         entity.setMemberpassword(passwordEncoder.encode(memberDto.getMemberpassword() != null ? memberDto.getMemberpassword() : "0"));
+
         entity.setMemberphone(memberDto.getMemberphone());
         entity.setMemberloginok(memberDto.getMemberloginok());
         entity.setMembermycar1(memberDto.getMembermycar1());
