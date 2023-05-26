@@ -31,7 +31,7 @@ public class SeesulRepositoryCustom {
                 .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(seesulEntity.sidx.desc())
+                .orderBy(seesulEntity.sdate.desc())
                 .fetch();
 
         return new PageImpl<>(results, pageable, total);

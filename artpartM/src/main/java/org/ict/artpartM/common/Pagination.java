@@ -59,7 +59,7 @@ public class Pagination {
         totalBlockCnt = (int) Math.ceil(totalPageCnt * 1.0 / blockSize);
 
         //블럭 시작 페이지
-        if(page<=7) {
+        if(page<=7 || totalPageCnt <= blockSize) {
             startPage = 1;
         }else{
             startPage = page-6;
@@ -71,7 +71,9 @@ public class Pagination {
         //블럭 마지막 페이지 validation
         if (endPage > totalPageCnt) {
             endPage = totalPageCnt;
-            startPage = totalPageCnt - blockSize + 1;
+            if(totalPageCnt > blockSize){
+                startPage = totalPageCnt - blockSize + 1;
+            }
         };
 
         // 이전 블럭 (클릭 시, 이전 블럭 마지막 페이지)
