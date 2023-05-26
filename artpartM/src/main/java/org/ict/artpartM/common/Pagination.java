@@ -69,7 +69,10 @@ public class Pagination {
         endPage = startPage + blockSize - 1;
 
         //블럭 마지막 페이지 validation
-        if (endPage > totalPageCnt) endPage = totalPageCnt;
+        if (endPage > totalPageCnt) {
+            endPage = totalPageCnt;
+            startPage = totalPageCnt - blockSize + 1;
+        };
 
         // 이전 블럭 (클릭 시, 이전 블럭 마지막 페이지)
         prevBlock = page-blockSize;
