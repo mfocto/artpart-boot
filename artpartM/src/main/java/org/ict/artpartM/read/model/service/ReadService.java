@@ -58,14 +58,4 @@ public class ReadService {
 
             return Header.OK(dtos, pagination);
     }
-
-    // 검침 수정
-    public ReadEntity update(ReadDto readDto) {
-        ReadEntity entity = readRepository.getReferenceById(readDto.getReadidx());
-        entity.setElectric(readDto.getElectric());
-        entity.setHeat(readDto.getHeat());
-        entity.setHotwater(readDto.getHotwater());
-        entity.setWater(readDto.getWater());
-        return readRepository.save(entity);
-    }
 }

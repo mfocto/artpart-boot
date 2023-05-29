@@ -29,7 +29,7 @@ public class MinoneEntity {
     @Column(name="MIN_IDX")//nullable=false => null 불가 //민원번호(SEQUENCE)
     private Long minidx;
 
-    @Column(name="MEMBER_IDX")//입주민 번호
+    @Column(name="MEMBER_IDX")//입주민번호
     private Long memberidx;
 
     @Column(name="MIN_TITLE")//민원제목
@@ -43,12 +43,6 @@ public class MinoneEntity {
 
     @Column(name="MIN_RES")//관리자답변
     private String minres;
-
-    @Column(name="MIN_FILE")//원본파일
-    private String minfile;
-
-    @Column(name="MIN_RENAME")//변경파일
-    private String minrename;
 
     @Column(name="MIN_CATEGORY")//카테고리
     private String mincategory;

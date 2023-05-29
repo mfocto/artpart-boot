@@ -46,7 +46,7 @@ public class CarRepositoryCustom {
             }
         } else if("member_memberdong".equals(sk)){
             if (StringUtils.hasLength(sv)){
-                return carEntity.memberCarid.memberdong.contains(sv);
+                return carEntity.memberCarid.memberho.contains(sv);
             }
         } else if("member_memberho".equals(sk)){
             if(StringUtils.hasLength(sv)){
