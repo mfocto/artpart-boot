@@ -34,7 +34,7 @@ public class MinoneService {
 
 
 
-    //########################################################################
+
     //새 글 등록 (**컬럼에 있는 값들은 내가 vue.js에서 사용하지 않더라도 모두 boot에 있어야 함)
     public MinoneEntity create(MinoneDto minoneDto) {       //entity안에 dto를 넣는 메소드임
         MinoneEntity entity = MinoneEntity.builder()
@@ -49,7 +49,7 @@ public class MinoneService {
     }//close
 
 
-    //########################################################################
+
     public Header<List<MinoneDto>> getMinoneList(
             Pageable pageable, SearchCondition searchCondition) {
         List<MinoneDto> dtos = new ArrayList<>();
@@ -80,6 +80,7 @@ public class MinoneService {
     }//close
 
 
+    //글 상세정보 조회
     public MinoneDto getMinone(Long id) {
         MinoneEntity entity = minoneRepository.findById(id).orElseThrow(() -> new RuntimeException("민원정보가없습니다."));
         return MinoneDto.builder()
@@ -93,6 +94,7 @@ public class MinoneService {
             .build();
     }//close
 
+
     //수정
     public MinoneEntity update(MinoneDto minoneDto){
         MinoneEntity entity = minoneRepository.findByMinidx(minoneDto.getMinidx());
@@ -100,6 +102,7 @@ public class MinoneService {
         entity.setMinres(minoneDto.getMinres());
         return minoneRepository.save(entity);
     }
+
 
     //삭제
     public void delete(Long id){
