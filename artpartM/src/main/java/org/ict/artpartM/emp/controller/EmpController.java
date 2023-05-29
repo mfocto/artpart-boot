@@ -9,9 +9,17 @@ import org.ict.artpartM.emp.model.dto.EmpDto;
 import org.ict.artpartM.emp.model.service.EmpService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -34,6 +42,10 @@ public class EmpController {
             return Header.ERROR("존재하지 않는 아이디 입니다.");
         }
     }
+    //직원 마이 페이지 이동
+
+    //직원 정보 출력
+
 
 
     //직원 리스트 출력
@@ -49,22 +61,27 @@ public class EmpController {
         return empService.getEmpList(id);
     }
 
-    //직원 등록
-    @PostMapping("/admin")//create==Post
-    public EmpEntity createEmp(@RequestBody EmpDto empdto){
-        return empService.createEmp(empdto);
+//    //직원 등록
+    @PostMapping("/admin")
+    public EmpEntity createEmp(@RequestBody EmpDto empDto){
+        return empService.createEmp(empDto);
     }
 
+
+
     //직원 수정
-    @PatchMapping("/admin/change")//직원 수정
+    @PatchMapping("/admin")//직원 수정
     public EmpEntity updateEmp(@RequestBody EmpDto empDto){
         return empService.updateEmp(empDto);
     }
 
-    @PatchMapping("/admin/Departure")//직원 수정
-    public EmpEntity updateEmpDeparture(@RequestBody EmpDto empDto){
-        return empService.updateEmpDeparture(empDto);
-    }
+
+    // 직원 사진 저장
+//    @PostMapping("/imgUp")
+//    public EmpEntity createEmpImg(@RequestParam("empImg") MultipartFile empImg, @RequestBody EmpDto empDto) {
+//        empDto.setEmpImg(String.valueOf(empImg));
+//        return empService.createEmpImg(empDto);
+//    }
 
 
 }
