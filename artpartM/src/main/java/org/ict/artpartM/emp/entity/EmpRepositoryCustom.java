@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -57,7 +58,7 @@ public class EmpRepositoryCustom {
             }
         } else if ("emp_hiredate".equals(sk)) {
             if (StringUtils.hasLength(sv)) {
-                return empEntity.empHireDate.notIn(LocalDateTime.parse(sv));
+                return empEntity.empHireDate.notIn(LocalDate.parse(sv));
             }
         }
         return null;
