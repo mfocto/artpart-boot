@@ -6,7 +6,7 @@ import org.ict.artpartM.member.entity.MemberEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 @Data
 @AllArgsConstructor
