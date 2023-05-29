@@ -55,6 +55,6 @@ public class PaymentController {
     @PatchMapping("/account/payment")
     public Header<FeeListDto> update(@RequestBody FeeListDto dto){
        log.info("dto : "+dto.toString());
-       return null;
+       return Header.OK(service.update(dto));
     }
 }

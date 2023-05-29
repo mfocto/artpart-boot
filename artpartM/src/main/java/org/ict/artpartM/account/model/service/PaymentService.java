@@ -6,6 +6,7 @@ import org.ict.artpartM.account.entity.*;
 import org.ict.artpartM.account.model.dto.FeeListDto;
 import org.ict.artpartM.account.model.dto.PaymentMemberDto;
 import org.ict.artpartM.account.model.dto.PaymentPublicDto;
+import org.ict.artpartM.common.Header;
 import org.ict.artpartM.common.SearchCondition;
 import org.ict.artpartM.member.entity.MemberEntity;
 import org.ict.artpartM.member.entity.MemberRepository;
@@ -73,5 +74,25 @@ public class PaymentService {
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    public FeeListDto update(FeeListDto dto) {
+        PaymentPublicEntity publicEntity = publicrepository.findByPPDate(LocalDate.parse(dto.getDate()+"-01"));
+        publicEntity.setPPFee(dto.getGen());
+        publicrepository.save(publicEntity);
+        PaymentMemberEntity memberEntity = memberrepository.findByMemberNoAndPMDate(memberRepository.findByMemberdongAndMemberho(dto.getDong(), dto.getHo()), LocalDate.parse(dto.getDate()+"-01"));
+        log.info("\n"+ memberEntity +"\n");
+        memberEntity.setPMHeat(dto.getHeat());
+        memberEntity.setPMOnsu(dto.getOnsu());
+        memberEntity.setPMGas(dto.getGas());
+        memberEntity.setPMElec(dto.getElec());
+        memberEntity.setPMWater(dto.getWater());
+        memberEntity.setPMOpercost(dto.getEtc()/4);
+        memberEntity.setPMSeptic(dto.getEtc()/4);
+        memberEntity.setPMInsure(dto.getEtc()/4);
+        memberEntity.setPMWaste(dto.getEtc()/4);
+        memberrepository.save(memberEntity);
+        dto.setSum(dto.getGen()+dto.getHeat()+dto.getOnsu()+dto.getGas()+dto.getElec()+dto.getWater()+dto.getEtc());
+        return dto;
     }
 }
