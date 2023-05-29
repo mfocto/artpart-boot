@@ -79,32 +79,45 @@ public class CarService {
 
     }
 
-    public CarEntity createCar(CarDto carDto) {
-        CarEntity entity = CarEntity.builder()
-                .carIdx(carDto.getCarIdx())
-                .carNumber(carDto.getCarNumber()!= null && !carDto.getCarNumber().isEmpty() ? carDto.getCarNumber() : null)
-                .memberCarid(carDto.getMemberCarid() != null ? carDto.getMemberCarid() : null)
-                .empCarid(carDto.getEmpCarid() != null ? carDto.getEmpCarid() : null)
-                .carDivisionId(carDto.getCarDivisionId() != null && !carDto.getCarDivisionId().isEmpty() ? carDto.getCarDivisionId() : null)
-                .carPhone(carDto.getCarPhone() != null && !carDto.getCarPhone().isEmpty() ? carDto.getCarPhone() : null)
-                .carEnrolldate(LocalDate.now())
-                .carType(carDto.getCarType() != null && !carDto.getCarType().isEmpty() ?  carDto.getCarType() : null)
-                .carNote(carDto.getCarNote() != null && !carDto.getCarNote().isEmpty() ?  carDto.getCarNote() : null)
-                .build();
-        return carRepository.save(entity);
-    }
+//    public CarEntity createCar(CarDto carDto) {
+//        CarEntity entity = CarEntity.builder()
+//                .carNumber(carDto.getCarNumber()!= null && !carDto.getCarNumber().isEmpty() ? carDto.getCarNumber() : null)
+//                .memberCarid(carDto.getMemberCarid() != null ? carDto.getMemberCarid() : null)
+//                .empCarid(carDto.getEmpCarid() != null ? carDto.getEmpCarid() : null)
+//                .carDivisionId(carDto.getCarDivisionId() != null && !carDto.getCarDivisionId().isEmpty() ? carDto.getCarDivisionId() : null)
+//                .carPhone(carDto.getCarPhone() != null && !carDto.getCarPhone().isEmpty() ? carDto.getCarPhone() : null)
+//                .carEnrolldate(LocalDate.now())
+//                .carType(carDto.getCarType() != null && !carDto.getCarType().isEmpty() ?  carDto.getCarType() : null)
+//                .carNote(carDto.getCarNote() != null && !carDto.getCarNote().isEmpty() ?  carDto.getCarNote() : null)
+//                .build();
+//        return carRepository.save(entity);
+//    }
 
     public CarEntity updateCar(CarDto carDto) {
         CarEntity entity = carRepository.findById(carDto.getCarIdx()).orElseThrow(() -> new RuntimeException("직원 정보를 찾을 수 없습니다."));
+        EmpEntity empEntity = empRepository.findByEmpIdx(carDto.getEmpCarid().getEmpIdx());
+        MemberEntity memberEntity = memberRepository.findByMemberidx(carDto.getMemberCarid().getMemberidx());
 
+        entity.setEmpCarid(empEntity);
+        entity.setMemberCarid(memberEntity);
         entity.setCarNumber(carDto.getCarNumber());
         entity.setCarDivisionId(carDto.getCarDivisionId());
         entity.setCarPhone(carDto.getCarPhone());
         entity.setCarType(carDto.getCarType());
         entity.setCarNote(carDto.getCarNote());
         entity.setCarEnddate(LocalDate.now());
-        entity.setCarStartdate(LocalDate.parse(carDto.getCarStartdate()));
-        entity.setCarEnddate(LocalDate.parse(carDto.getCarEnddate()));
+        if(carDto.getCarStartdate() != null){
+            entity.setCarStartdate(LocalDate.parse(carDto.getCarStartdate()));
+        }else {
+            entity.setCarStartdate(null);
+        }
+        if(carDto.getCarEnddate() != null){
+            entity.setCarEnddate(LocalDate.parse(carDto.getCarEnddate()));
+        }else {
+            entity.setCarEnddate(null);
+        }
+
+
         return carRepository.save(entity);
     }
 
@@ -159,6 +172,14 @@ public class CarService {
     public CarEntity createCarEmp(CarDto carDto) {
         EmpEntity empEntity = empRepository.findByEmpIdx(carDto.getEmpCarid().getEmpIdx());
         MemberEntity memberEntity = memberRepository.findByMemberidx(carDto.getMemberCarid().getMemberidx());
+        LocalDate carStartdate = null;
+        LocalDate carEnddate = null;
+        if (carDto.getCarStartdate() != null && !carDto.getCarStartdate().isEmpty()) {
+            carStartdate = LocalDate.parse(carDto.getCarStartdate());
+        }
+        if(carDto.getCarEnddate() != null && !carDto.getCarEnddate().isEmpty()){
+            carEnddate = LocalDate.parse(carDto.getCarEnddate());
+        }
         CarEntity entity = CarEntity.builder()
                 .carNumber(carDto.getCarNumber()!= null && !carDto.getCarNumber().isEmpty() ? carDto.getCarNumber() : null)
                 .memberCarid(memberEntity)
@@ -168,6 +189,8 @@ public class CarService {
                 .carEnrolldate(LocalDate.now())
                 .carType(carDto.getCarType() != null && !carDto.getCarType().isEmpty() ?  carDto.getCarType() : null)
                 .carNote(carDto.getCarNote() != null && !carDto.getCarNote().isEmpty() ?  carDto.getCarNote() : null)
+                .carStartdate(carStartdate)
+                .carEnddate(carEnddate)
                 .build();
         return carRepository.save(entity);
     }
