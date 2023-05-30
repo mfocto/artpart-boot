@@ -36,6 +36,7 @@ public class SmsController {
         messageDto.setContent(content);
         List<MemberEntity> memberEntities = memberRepository.findAll().stream()
                 .filter(member -> "Y".equals(member.getMemberloginok()))
+                .filter(member -> member.getMemberphone() != null)
                 .collect(Collectors.toMap(MemberEntity::getMemberphone, Function.identity(), (existing, replacement) -> existing))
                 .values()
                 .stream()
