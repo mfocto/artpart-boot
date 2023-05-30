@@ -14,6 +14,5 @@ public interface MinoneRepository extends JpaRepository<MinoneEntity, Long>  {
     List<CrudEntity> searchParamRepo(@Param("name") String name);
     */
 
-    MinoneEntity findByMemberidx(long memberidx);
     MinoneEntity findByMinidx(long minidx);
 }

@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		MemberEntity member = repository.findByMemberId(userName.trim());
 
-		return member == null ? null : new CustomUser(member);
+		return member == null ? null :(member.getMemberLoginOK().equals("N") ? null : new CustomUser(member));
 	}
 	
 }

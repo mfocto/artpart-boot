@@ -19,13 +19,13 @@ import java.util.List;
     @CrossOrigin
     @AllArgsConstructor
     @RestController
-    //@RequestMapping(value ="/minone" )      // "/localhost에서 접속 시 뭐로 구분할건지" > localhost:8080/test 이런 식으로 사용하게 됨
+    //@RequestMapping(value ="/minone" ) // "/localhost에서 접속 시 뭐로 구분할건지" > localhost:8080/test 이런 식으로 사용하게 됨
     public class MinoneController {
 
         private final MinoneService minoneService;
 
 
-        //########################################################################
+
         //새 글 등록
         @PostMapping("/newmin")
         public MinoneEntity create(@RequestBody MinoneDto minoneDto){
@@ -33,7 +33,6 @@ import java.util.List;
             return  minoneService.create(minoneDto); }
 
 
-        //########################################################################
         //전체리스트 조회
         @GetMapping("/minone/alllist")
         public Header<List<MinoneDto>> minoneList(
@@ -41,7 +40,7 @@ import java.util.List;
                 SearchCondition searchCondition) {
             return minoneService.getMinoneList(pageable, searchCondition);
         }
-        //########################################################################
+
 
         //글 상세정보 조회
         @GetMapping("/minone/{id}")
@@ -49,11 +48,14 @@ import java.util.List;
             return minoneService.getMinone(id);
         }
 
-        //########################################################################
 
+
+        //글 수정
         @PatchMapping("/minone")
         public MinoneEntity update(@RequestBody MinoneDto minoneDto) { return minoneService.update(minoneDto); }
 
+
+        //글 삭제
         @DeleteMapping("/minone/{id}")
         public void delete(@PathVariable Long id) { minoneService.delete(id); }
 

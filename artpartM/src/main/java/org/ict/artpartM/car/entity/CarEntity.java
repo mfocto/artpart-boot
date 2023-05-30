@@ -5,7 +5,8 @@ import org.ict.artpartM.emp.entity.EmpEntity;
 import org.ict.artpartM.member.entity.MemberEntity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Data
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class CarEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAR_IDX")
     @SequenceGenerator(name="CAR_IDX", sequenceName = "CAR_IDX", allocationSize=1)
     @Column(name = "CAR_IDX")
-    private long carIdx;                //차량 등록 번호(CAR_IDX)(car_idx)
+    private Long carIdx;                //차량 등록 번호(CAR_IDX)(car_idx)
     @Column(name="CAR_NUMBER", nullable = true)
     private String carNumber;           //차량 번호(CAR_NUMBER)(car_number)
     @ManyToOne
@@ -33,14 +34,14 @@ public class CarEntity {
     @Column(name="CAR_PHONE" , nullable = true)
     private String carPhone;            //차량 주인 전화 번호(CAR_PHONE)(car_phone)
     @Column(name="CAR_ENROLLDATE", columnDefinition = "date default sysdate")
-    private LocalDateTime carEnrolldate;       //차량 등록 일시(CAR_ENROLLDATE)(car_enrolldate)
+    private LocalDate carEnrolldate;       //차량 등록 일시(CAR_ENROLLDATE)(car_enrolldate)
     @Column(name="CAR_TYPE", nullable = true)
     private String carType;             //차종(CAR_TYPE)(car_type)
     @Column(name="CAR_NOTE", nullable = true)
     private String carNote;             //비고(CAR_NOTE)(car_note)
     @Column(name="CAR_STARTDATE", nullable = true)
-    private LocalDateTime carStartdate;        //방문 시작 날짜(CAR_STARTDATE)(car_startdate)
+    private LocalDate carStartdate;        //방문 시작 날짜(CAR_STARTDATE)(car_startdate)
     @Column(name="CAR_ENDDATE", nullable = true)
-    private LocalDateTime carEnddate;          //방문 종료 날짜(CAR_ENDDATE)(car_enddate)
+    private LocalDate carEnddate;          //방문 종료 날짜(CAR_ENDDATE)(car_enddate)
 
 }
