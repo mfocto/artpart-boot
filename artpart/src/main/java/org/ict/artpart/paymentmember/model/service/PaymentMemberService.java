@@ -20,7 +20,7 @@ public class PaymentMemberService {
     private final PaymentMemberRepository paymentMemberRepository;
     private final PaymentMemberRepositoryCustom paymentMemberRepositoryCustom;
     //이번년도 월별납부
-    public Header<HashMap<String,List<PaymentMemberDto>>> getPaymentMemberList() {
+    public Header<HashMap<String,List<PaymentMemberDto>>> getPaymentMemberList(Long id) {
         List<PaymentMemberDto> monthList = new ArrayList<>();
         List<PaymentMemberDto> yearList = new ArrayList<>();
         List<PaymentMemberDto> sixMonthList = new ArrayList<>();
@@ -28,7 +28,7 @@ public class PaymentMemberService {
         HashMap<String,List<PaymentMemberDto>> list = new HashMap<>();
 
 
-        List<PaymentMemberEntity> month = paymentMemberRepositoryCustom.findAllByMonth();
+        List<PaymentMemberEntity> month = paymentMemberRepositoryCustom.findAllByMonth(id);
 
         //월별 리스트 담기
         for(PaymentMemberEntity mentity : month){
@@ -51,7 +51,7 @@ public class PaymentMemberService {
         list.put("monthList", monthList);
 
         //최근 6개월 차트넣기용
-        List<Object[]> resultsList = paymentMemberRepository.findByPmSixMonth();
+        List<Object[]> resultsList = paymentMemberRepository.findByPmSixMonth(id);
         for(int i = 0; i < 6; i++){
             Object[] obj = resultsList.get(i);
             Date pmDate = (Date) obj[0];
@@ -65,7 +65,7 @@ public class PaymentMemberService {
         list.put("sixMonthList", sixMonthList);
 
         //최근 10년 년도별 리스트
-        List<Object[]> year = paymentMemberRepository.findByPmSumByYear();
+        List<Object[]> year = paymentMemberRepository.findByPmSumByYear(id);
         for(int i = 10; i > 0; i--){
             Object[] obj = year.get(i);
             BigDecimal pmDateDecimal = (BigDecimal) obj[0];
@@ -98,7 +98,7 @@ public class PaymentMemberService {
         list.put("yearList", yearList);
 
         //최근 관리비 전월 당월 비교
-        List<Object[]> recently = paymentMemberRepository.findByPmMonth();
+        List<Object[]> recently = paymentMemberRepository.findByPmMonth(id);
         for(int i = 0; i < 2; i++){
             //i가 0일때 최근
             if(i == 0) {

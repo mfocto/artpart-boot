@@ -16,7 +16,7 @@ public class PaymentMemberRepositoryCustom {
     private final EntityManager entityManager;
     private Tuple tuple;
 
-    public List<PaymentMemberEntity> findAllByMonth() {
+    public List<PaymentMemberEntity> findAllByMonth(Long id) {
         LocalDate now = LocalDate.now();
         // CriteriaBuilder 생성
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -34,8 +34,11 @@ public class PaymentMemberRepositoryCustom {
         // 비교 조건 생성
         Predicate yearPredicate = criteriaBuilder.equal(dbYear, currentYear);
 
+        // 추가 조건 생성 (memberNo)
+        Predicate memberPredicate = criteriaBuilder.equal(root.get("memberNo").get("memberIdx"), id);
+
         // 쿼리에 조건 추가
-        criteriaQuery.select(root).where(yearPredicate);
+        criteriaQuery.select(root).where(criteriaBuilder.and(yearPredicate, memberPredicate));
 
         // EntityManager를 사용하여 쿼리 실행
         List<PaymentMemberEntity> monthList = entityManager.createQuery(criteriaQuery).getResultList();
