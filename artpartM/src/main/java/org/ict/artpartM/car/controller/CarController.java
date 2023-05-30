@@ -7,6 +7,8 @@ import org.ict.artpartM.car.model.dto.CarDto;
 import org.ict.artpartM.car.model.service.CarService;
 import org.ict.artpartM.common.Header;
 import org.ict.artpartM.common.SearchCondition;
+import org.ict.artpartM.emp.model.dto.EmpDto;
+import org.ict.artpartM.member.model.dto.MemberDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
@@ -32,12 +34,35 @@ public class CarController {
     public CarDto getCar(@PathVariable Long id){
         return carService.getCar(id);
     }
-
-    @PostMapping("/car")//creat == postMapping
-    public CarEntity createCar(@RequestBody CarDto carDto){
-        return carService.createCar(carDto);
+    //입주민리스트 갖고 오기
+    @GetMapping("/memberForCar/list")
+    public Header<List<MemberDto>> getMember(){
+        return carService.getMember();
+    }
+    @GetMapping("/empForCar/list")
+    public Header<List<EmpDto>> getEmp(){
+        return carService.getEmp();
     }
 
+    //차량 등록(처음)
+//    @PostMapping("/car/{member_carid}")//creat == postMapping
+//    public CarEntity createCarMember(@RequestBody CarDto carDto,@PathVariable long member_carid){
+//        log.info(String.valueOf(member_carid));
+//        log.info(carDto.toString());
+//        return carService.createCarMember(carDto,member_carid);
+//    }
+//    @PostMapping("/car/{emp_carid}")//creat == postMapping
+//    public CarEntity createCarEmp(@RequestBody CarDto carDto,@PathVariable long emp_carid){
+//        log.info(String.valueOf(emp_carid));
+//        log.info(carDto.toString());
+//        return carService.createCarEmp(carDto,emp_carid);
+//    }
+
+    @PostMapping("/car")
+    public CarEntity create(@RequestBody CarDto carDto){
+        log.info("obj : " + carDto);
+        return carService.createCarEmp(carDto);
+    }
     @PatchMapping("/car")
     public CarEntity updateCar(@RequestBody CarDto carDto){
         return carService.updateCar(carDto);
@@ -47,5 +72,7 @@ public class CarController {
     public void deleteCar(@PathVariable Long id){
         carService.deleteCar(id);
     }
+
+
 
 }

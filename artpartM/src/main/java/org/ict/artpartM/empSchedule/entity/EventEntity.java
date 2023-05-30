@@ -27,11 +27,11 @@ public class EventEntity {
     private String title;
     @Column(name = "EVENT_DESCRIPTION")
     private String description;
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "EVENT_START_DATE")
     private LocalDateTime start;
     @Column(name = "EVENT_END_DATE")
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime end;
     @Column(name = "EVENT_BACKGROUND_COLOR")
     private String backgroundColor;
