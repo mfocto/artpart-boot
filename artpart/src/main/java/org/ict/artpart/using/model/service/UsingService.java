@@ -23,10 +23,10 @@ import java.util.List;
 public class UsingService {
     private final UsingRepositoryCustom usingRepositoryCustom;
 
-    public Header<List<UsingDto>> getUsingList(Pageable pageable) {
+    public Header<List<UsingDto>> getUsingList(Long id, Pageable pageable) {
 
     List<UsingDto> list = new ArrayList<>();
-        Page<UsingEntity> usingEntities = usingRepositoryCustom.findAllUsing(pageable);
+        Page<UsingEntity> usingEntities = usingRepositoryCustom.findAllUsing(id, pageable);
         for(UsingEntity  entity : usingEntities){
             UsingDto dto = UsingDto.builder()
                     .detailIdx(entity.getDetailIdx())
