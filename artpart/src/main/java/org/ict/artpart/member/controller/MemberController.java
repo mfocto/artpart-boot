@@ -23,7 +23,7 @@ public class MemberController {
         return Header.OK(memberService.test());
     }
 
-    @GetMapping("/member/{id}")
+    @GetMapping("/member/{memberId}")
     public Header<MemberDto> getMember(@PathVariable String memberId){
         return Header.OK(memberService.getMember(memberId));
     }
