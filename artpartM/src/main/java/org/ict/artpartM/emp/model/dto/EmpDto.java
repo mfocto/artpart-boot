@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class EmpDto {
-    private long empIdx;
+    private Long empIdx;
     private String empId;
     private String empPermanentId;
     private String empJobId;

@@ -10,7 +10,7 @@ import org.ict.artpartM.member.entity.MemberEntity;
 @Builder
 public class CarDto {
 
-    private long carIdx;                //차량 등록 번호(CAR_IDX)(car_idx)
+    private Long carIdx;                //차량 등록 번호(CAR_IDX)(car_idx)
     private String carNumber;           //차량 번호(CAR_NUMBER)(car_number)
     private MemberEntity memberCarid;                  //입주민번호(MEMBER_CARID)(member_carid)
     private EmpEntity empCarid;              //사원 번호(사번)(EMP_CARID)(emp_carid)
