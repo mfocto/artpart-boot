@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,9 +22,9 @@ import java.util.List;
 public class UsingController {
     private final UsingService usingService;
 
-    @GetMapping("/using/list")
-    public Header<List<UsingDto>> usingList(
+    @GetMapping("/using/list/{id}")
+    public Header<List<UsingDto>> usingList(@PathVariable("id") Long id,
             @PageableDefault(sort = {"usingIdx"}) Pageable pageable){
-        return usingService.getUsingList(pageable);
+        return usingService.getUsingList(id,pageable);
     }
 }

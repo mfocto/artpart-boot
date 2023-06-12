@@ -7,6 +7,7 @@ import org.ict.artpart.paymentmember.model.dto.PaymentMemberDto;
 import org.ict.artpart.paymentmember.model.service.PaymentMemberService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -21,10 +22,9 @@ public class PaymentMemberController {
     private final PaymentMemberService paymentMemberService;
 
     // 이번달/월별/년도별  Map 메소드
-    @GetMapping("payment/list")
-    public Header<HashMap<String,List<PaymentMemberDto>>> paymentMemberList(){
-
-        return paymentMemberService.getPaymentMemberList();
+    @GetMapping("payment/list/{id}")
+    public Header<HashMap<String,List<PaymentMemberDto>>> paymentMemberList(@PathVariable Long id){
+        return paymentMemberService.getPaymentMemberList(id);
     }
 
 //    @GetMapping("payment/list")
